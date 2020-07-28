@@ -13,3 +13,6 @@ vendor/
 
 # temporarily ignore gemfile.lock
 Gemfile.lock
+
+# Ignore objects directory to avoid committing binary files (other than demo files)
+objects/
