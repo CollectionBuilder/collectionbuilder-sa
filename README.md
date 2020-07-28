@@ -8,6 +8,13 @@ CollectionBuilder-SA ("Stand Alone") is a template for creating digital collecti
 Driven by your collection metadata, the template generates engaging visualizations to browse and explore your objects.
 The resulting static site can be hosted on any basic web server.
 
+CollectionBuilder-SA requires that you generate a thumb and small image derivative/representation for each object in your collection, in additional to the full sized object.
+This can be automated using the [included rake tasks](https://github.com/CollectionBuilder/collectionbuilder-sa/blob/master/docs/rake-tasks.md) or manually created using other software.
+
+*Note:* CollectionBuilder-SA collections are scalable to thousands of items, with the only limitation being the final file size of the Lunr static search index.
+The search page for collections with extensive text metadata and thousands of items will load slowly.
+Full document text search is possible, but not generally suggested.
+
 [CollectionBuilder](https://github.com/CollectionBuilder/) is an set of open source tools for creating digital collection and exhibit websites that are driven by metadata and powered by modern static web technology.
 See [Getting Started Docs](https://collectionbuilder.github.io/docs/introduction.html) for detailed information.
 
