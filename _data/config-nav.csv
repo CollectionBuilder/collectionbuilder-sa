@@ -1,0 +1,11 @@
+display_name,stub,dropdown_parent
+Home,/,
+Browse,/browse.html,
+Subjects,/subjects.html,
+Locations,/locations.html,
+Map,/map.html,
+Timeline,/timeline.html,
+Data,/data/,
+About,,
+About the Collection,/about.html,About
+CollectionBuilder,/tech.html,About
