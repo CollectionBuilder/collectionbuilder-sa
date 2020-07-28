@@ -1,0 +1,1 @@
+{% unless item.youtubeid or page.youtubeid %}{{ site.objects | relative_url }}/{{ page.filename | default: item.filename }}{% else %}https://youtu.be/{{ page.youtubeid | default: item.youtubeid }}{% endunless %}

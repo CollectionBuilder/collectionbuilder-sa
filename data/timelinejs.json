@@ -17,7 +17,7 @@
     "events": [
       {% for item in items %}{% if item.date %}{
         "media": {
-          "url": "{% if item.format contains 'image' %}{% include image/medium.html %}{% elsif item.youtubeid %}{% include image/youtube-large.html %}{% else %}{% include image/thumb.html %}{% endif %}",
+          "url": "{% include image/small.html %}",
           "caption": {{ item.title | jsonify }},
           "link": "{% include item-link.html %}",
           "credit": "{{ site.title }}"

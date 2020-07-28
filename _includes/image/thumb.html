@@ -1,0 +1,1 @@
+{% unless item.youtubeid or page.youtubeid %}{{ site.objects | relative_url }}/thumbs/{{ page.objectid | default: item.objectid }}_th.jpg{% else %}https://img.youtube.com/vi/{{ page.youtubeid | default: item.youtubeid }}/default.jpg{% endunless %}

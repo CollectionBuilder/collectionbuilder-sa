@@ -1,0 +1,21 @@
+<script>
+function leftArrowPressed() {
+   location.href = document.getElementById("prev-page-button").href;
+}
+
+function rightArrowPressed() {
+    location.href = document.getElementById("next-page-button").href;
+}
+
+document.onkeydown = function(evt) {
+    evt = evt || window.event;
+    switch (evt.keyCode) {
+        case 37:
+            leftArrowPressed();
+            break;
+        case 39:
+            rightArrowPressed();
+            break;
+    }
+};
+</script>
