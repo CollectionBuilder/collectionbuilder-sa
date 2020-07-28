@@ -1,0 +1,134 @@
+---
+layout: default
+gallery: true
+---
+{%- assign fields = site.data.config-metadata | where_exp: 'item', 'item.display_name != nil' -%}
+<div class="container py-3">
+    <ul class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ '/' | absolute_url }}">Home</a></li>
+        <li class="breadcrumb-item"><a href="{{ '/browse.html' | absolute_url }}">Items</a></li>
+        <li class="breadcrumb-item active">{{ page.title | truncatewords: 10 }}</li>
+    </ul>
+
+    <div class="row">
+        <div class="col-md-6" id="lightgallery">
+            <div class="card mb-4 text-center">
+                {% if page.format contains 'image' %}
+                <div class="gallery-img" data-src="{% include image/max.html %}">
+                    <p><img src="{% include image/small.html %}" alt="item thumbnail for {{ page.title | escape }}" class="img-fluid"></p>
+                    <p><small>Click to view full screen</small></p>
+                </div>
+                {%- else -%}
+                <div class="mt-4">
+                    <p>
+                        {%- if page.format contains 'audio' -%}
+                        <audio controls class="w-100">
+                            <source src="{% include download/item.html %}" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                        {%- elsif page.youtubeid -%}
+                        <div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" src="https://www.youtube-nocookie.com/embed/{{page.youtubeid}}?rel=0&modestbranding=1" allowfullscreen></iframe></div>
+                        {%- elsif page.format contains 'video' -%}
+                        <video width="320" height="240" controls>
+                            <source src="{% include download/item.html %}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        {%- else -%}
+                        <a href="{% include download/item.html %}" target="_blank"><img src="{% include image/thumb.html %}" alt="item thumbnail for {{ page.title | escape }}" class="img-fluid thumb"></a>
+                        {%- endif -%}
+                    </p>
+                </div>
+                {%- endif -%}
+                <div class="my-2">
+                    {% if page.youtubeid %}
+                    <a target="_blank" rel="noopener" href="https://youtu.be/{{ page.youtubeid }}" class="btn btn-outline-info">View on YouTube</a>
+                    {% else %}
+                    <a target="_blank" href="{% include download/item.html %}" class="btn btn-outline-info">Download {{ page.format | split: '/' | last | upcase }}</a>{% endif %}
+                    {% if page.date %}{%- capture year -%}{% if page.date contains "-" %}{{ page.date | split: "-" | first }}{% elsif page.date contains "/" %}{{ page.date | split: "/" | last }}{% else %}{{ page.date }}{% endif %}{%- endcapture -%}
+                    <a href="{{ year | strip | prepend: '/timeline.html#' | relative_url }}" class="ml-2 btn btn-outline-info">View on Timeline</a>{% endif %}
+                    {% if page.latitude and page.longitude %}
+                    <a href="{{ '/map.html#' | append: page.latitude  | append: ',' | append: page.longitude | relative_url}}" class="ml-2 btn btn-outline-info">View on Map</a>{% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div id="item-metadata" class="metadata">
+                <dl>
+                    {% for f in fields %}{% if page[f.field] %}
+                    <dt class="field">{{ f.display_name }}:</dt>
+                    <dd class="field-value">
+                        {% if f.browse_link == "true" %}
+                        {% assign topics = page[f.field] | split: ";" %}
+                        {% for t in topics %}
+                        <a class="mr-3" href="{{ t | strip | url_param_escape | prepend: '/browse.html#' | relative_url }}">{{ t | strip }}</a>
+                        {% endfor %}
+                        {% else %}
+                        {{ page[f.field] | replace: '""','"' }}{% endif %}
+                    </dd>
+                    {% endif %}{% endfor %}
+                </dl>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-end mt-4">
+        <div class="col-md-5">
+            <div class="card mb-2">
+                <div class="card-header">Source</div>
+                <div class="card-body">
+                    <dl>
+                        <dt>Preferred Citation:</dt>
+                        <dd>"{{ page.title }}", {{ site.title }}, {{ site.organization-name }}</dd>
+                        <dt>Reference Link:</dt>
+                        <dd>{{ page.url | absolute_url }}</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+        {% if page.rights or page.rightsstatment %}
+        <div class="col-md-5">
+            <div class="card mb-2">
+                <div class="card-header">Rights</div>
+                <div class="card-body">
+                    <dl>
+                        {% if page.rights %}
+                        <dd>{{ page.rights }}</dd>{% endif %}
+                        {% if page.rightsstatement %}<dt>Standardized Rights:</dt>
+                        <dd><a target="_blank" rel="noopener" href="{{ page.rightsstatement }}">{{ page.rightsstatement }}</a>
+                        </dd>{% endif %}
+                    </dl>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+    {%- if site.data.theme.browse-buttons == true -%}
+    {% assign itemset = site.data[site.metadata] | map: 'objectid' | compact %}
+    {% assign last = itemset | size | minus: 1 %}
+    {% unless page.index_number == 0 %}
+    {% assign back = page.index_number | minus: 1 %}
+    {% else %}
+    {% assign back = last %}
+    {%- endunless -%}
+    {% unless page.index_number == last %}
+    {% assign forward = page.index_number | plus: 1 %}
+    {% else %}
+    {% assign forward = 0 %}
+    {%- endunless -%}
+    {%- assign back_url = '/items/' | append: itemset[back] | append: '.html' | relative_url -%}
+    {%- assign forward_url = '/items/' | append: itemset[forward] | append: '.html' | relative_url -%}
+    <div class="text-center">
+        <a class="btn btn-secondary" href="{{ back_url }}" id="prev-page-button">&laquo; Previous</a>
+        <a class="btn btn-secondary" href="{{ '/browse.html' | relative_url }}" >Back to Browse</a>
+        <a class="btn btn-secondary" href="{{ forward_url }}" id="next-page-button">Next &raquo;</a>
+    </div>
+    <div id="item-nav">
+        <div class="d-none d-md-block">
+            <a class="previous btn btn-lg btn-secondary" href="{{ back_url }}">&laquo;</a>
+            <a class="next btn btn-lg btn-secondary" href="{{ forward_url }}">&raquo;</a>
+        </div>
+    </div>
+    {%- endif -%}
+</div>
