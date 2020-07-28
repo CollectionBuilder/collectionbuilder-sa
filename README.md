@@ -1,6 +1,6 @@
-# CollectionBuilder-SA
+# CollectionBuilder-SA 
 
-CollectionBuilder-SA is a template for creating digital collection and exhibit websites using Jekyll, given:
+CollectionBuilder-SA ("Stand Alone") is a template for creating digital collection and exhibit websites using Jekyll, given:
 
 - a CSV of collection metadata
 - a folder of images, PDFs, audio, or video files
