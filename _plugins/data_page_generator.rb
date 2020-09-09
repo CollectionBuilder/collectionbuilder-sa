@@ -98,38 +98,42 @@ module Jekyll
       data = site.config['page_gen']
       if data
         data.each do |data_spec|
-          index_files_for_this_data = data_spec['index_files'] != nil ? data_spec['index_files'] : index_files
-          template = data_spec['template'] || data_spec['data']
-          name = data_spec['name']
-          name_expr = data_spec['name_expr']
-          dir = data_spec['dir'] || data_spec['data']
-          extension = data_spec['extension'] || "html"
+          if site.data.key? data_spec['data']
+            index_files_for_this_data = data_spec['index_files'] != nil ? data_spec['index_files'] : index_files
+            template = data_spec['template'] || data_spec['data']
+            name = data_spec['name']
+            name_expr = data_spec['name_expr']
+            dir = data_spec['dir'] || data_spec['data']
+            extension = data_spec['extension'] || "html"
 
-          if site.layouts.key? template
-            # records is the list of records defined in _data.yml
-            # for which we want to generate different pages
-            records = nil
-            data_spec['data'].split('.').each do |level|
-              if records.nil?
-                records = site.data[level]
-              else
-                records = records[level]
+            if site.layouts.key? template
+              # records is the list of records defined in _data.yml
+              # for which we want to generate different pages
+              records = nil
+              data_spec['data'].split('.').each do |level|
+                if records.nil?
+                  records = site.data[level]
+                else
+                  records = records[level]
+                end
               end
-            end
 
-            # apply filtering conditions:
-            # - filter requires the name of a boolean field
-            # - filter_condition evals a ruby expression
-            records = records.select { |r| r[data_spec['filter']] } if data_spec['filter']
-            records = records.select { |record| eval(data_spec['filter_condition']) } if data_spec['filter_condition']
+              # apply filtering conditions:
+              # - filter requires the name of a boolean field
+              # - filter_condition evals a ruby expression
+              records = records.select { |r| r[data_spec['filter']] } if data_spec['filter']
+              records = records.select { |record| eval(data_spec['filter_condition']) } if data_spec['filter_condition']
 
-            records.each_with_index do |record, index|
-              # provide index number for page object
-              index_number = index
-              site.pages << DataPage.new(site, site.source, index_files_for_this_data, dir, record, name, name_expr, template, extension, index_number)
+              records.each_with_index do |record, index|
+                # provide index number for page object
+                index_number = index
+                site.pages << DataPage.new(site, site.source, index_files_for_this_data, dir, record, name, name_expr, template, extension, index_number)
+              end
+            else
+              puts "error (datapage_gen). could not find template #{template}" if not site.layouts.key? template
             end
           else
-            puts "error (datapage_gen). could not find template #{template}" if not site.layouts.key? template
+            puts "Page Gen Error: Data value '#{data_spec['data']}' does not match any site.data. Please check _config.yml page_gen 'data' value. Common issues are spelling error or including an extension such as .csv (no extension should be used!). Item pages are NOT being generated!"
           end
         end
       end
