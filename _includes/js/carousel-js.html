@@ -1,7 +1,6 @@
-{%- assign carousel-items = site.data[site.metadata] -%}
-<script> 
+{%- assign carousel-items = site.data[site.metadata ] | where_exp: "item","item.format contains 'image' or item.format contains 'pdf' or item.youtubeid" -%}<script> 
     //title,youtubeid,objectid
-    var carouselItems = [ {% for c in carousel-items %}[ {{ c.title | escape | jsonify }}, "{{ c.youtubeid }}", "{{ c.objectid }}" ]{% unless forloop.last %}, {% endunless %}{% endfor %}];
+    var carouselItems = [ {% for c in carousel-items %}[ {{ c.title | escape | jsonify }}, "{{ c.youtubeid }}", "{{ c.objectid }}", {% if  c.filename contains '/' %}{{ c.filename | jsonify }}{% else %}"{{ site.objects | relative_url }}/thumbs/{{ c.filename | downcase | split: '.' | first }}_th.jpg"{% endif %} ]{% unless forloop.last %}, {% endunless %}{% endfor %}];
     var placeholder = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 2'%3E%3C/svg%3E";
     var carousel = document.getElementById("carouselInner");
     carouselItems.sort(function() { return 0.5 - Math.random() });
@@ -12,7 +11,7 @@
             itemImg = "https://img.youtube.com/vi/" + carouselItems[i][1] + "/hqdefault.jpg";
         }
         else {
-            itemImg = "{{ site.objects | relative_url }}/thumbs/" + carouselItems[i][2] + "_th.jpg";
+            itemImg = carouselItems[i][3];
         }
         slide = "<div class='carousel-item text-center py-2'><img class='image-fluid mx-auto h-100 lazyload' alt='image highlight' src='" + placeholder + "' data-src='" + itemImg + "'> <div class='carousel-caption'><h5 class='carousel-item-title text-white py-2'>" + carouselItems[i][0] + "</h5><a target='_blank' href='{{ site.baseurl }}/items/" + carouselItems[i][2] + ".html' class='btn btn-sm btn-primary'>View Item</a></div></div>";
         slides += slide;

@@ -1,4 +1,4 @@
-{%- assign carousel-size = site.data[site.metadata] | size | at_most: 9 -%}
+{%- assign carousel-size = site.data[site.metadata] | where_exp: "item","item.format contains 'image' or item.format contains 'pdf' or item.youtubeid" |  size | at_most: 9 -%}
 <style>
     #imageCarousel .carousel-item { height: {{ site.data.theme.carousel-height | remove: "px" | default: '300' }}px; }
 </style>
