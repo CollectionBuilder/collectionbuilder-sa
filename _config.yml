@@ -26,6 +26,7 @@ tagline: Digital Collection Magic with Static Web Technologies
 description: "CollectionBuilder-SA is a template for creating digital collection exhibits using static web technology."  
 # creator of the digital collection, to appear in meta tags; we typically use our GitHub usernames but feel free to just use your name
 author: CollectionBuilder
+contact-email: ewilliamson@uidaho.edu
 # Organization branding
 organization-name: "Digital Initiatives, University of Idaho Library"
 organization-link: https://www.lib.uidaho.edu/digital/

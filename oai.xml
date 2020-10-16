@@ -1,0 +1,59 @@
+{%- assign items = site.data[site.metadata] -%}
+{%- assign fields = site.data.config-metadata | where_exp: 'field','field.dc_map' -%}
+{%- assign oai_dc_fields = "title;creator;subject;description;publisher;contributor;date;type;format;identifier;source;language;relation;coverage;rights" | split: ";" -%}
+<?xml version="1.0" encoding="UTF-8"?>
+<Repository xmlns="http://www.openarchives.org/OAI/2.0/static-repository" 
+            xmlns:oai="http://www.openarchives.org/OAI/2.0/" 
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+            xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/static-repository 
+                                http://www.openarchives.org/OAI/2.0/static-repository.xsd">
+    <Identify>
+        <oai:repositoryName>{{ site.title }}</oai:repositoryName>
+        <oai:baseURL>http://gateway.institution.org/oai/{{ page.url | absolute_url | remove: "https://" | remove: "http://" }}</oai:baseURL>
+        <oai:protocolVersion>2.0</oai:protocolVersion>
+        <oai:adminEmail>{{ site.contact-email }}</oai:adminEmail>
+        <oai:earliestDatestamp>2002-09-19</oai:earliestDatestamp>
+        <oai:deletedRecord>no</oai:deletedRecord>
+        <oai:granularity>YYYY-MM-DD</oai:granularity>
+    </Identify>
+    <ListMetadataFormats>
+        <oai:metadataFormat>
+            <oai:metadataPrefix>oai_dc</oai:metadataPrefix>
+            <oai:schema>http://www.openarchives.org/OAI/2.0/oai_dc.xsd</oai:schema>
+            <oai:metadataNamespace>http://www.openarchives.org/OAI/2.0/oai_dc/</oai:metadataNamespace>
+        </oai:metadataFormat>
+    </ListMetadataFormats>
+    <ListRecords metadataPrefix="oai_dc">
+        {% for item in items %}
+        <oai:record> 
+            <oai:header>
+                <oai:identifier>oai:oai:{{ site.url | remove: 'https://' | remove: 'http://' }}:{{ site.baseurl | remove: '/' }}/{{ item.objectid }}</oai:identifier> 
+                <oai:datestamp>{{ site.time | date: "%Y-%m-%d" }}</oai:datestamp>
+            </oai:header>
+            <oai:metadata>
+                <oai_dc:dc 
+                xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/" 
+                xmlns:dc="http://purl.org/dc/elements/1.1/" 
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/ 
+                                    http://www.openarchives.org/OAI/2.0/oai_dc.xsd">
+                    <dc:title>{{ item.title | escape }}</dc:title> 
+                    <dc:creator>Dushay, Naomi</dc:creator>
+                    <dc:subject>Digital Libraries</dc:subject> 
+                    <dc:description>With the increasing technical sophistication of 
+                    both information consumers and providers, there is 
+                    increasing demand for more meaningful experiences of digital 
+                    information. We present a framework that separates digital 
+                    object experience, or rendering, from digital object storage 
+                    and manipulation, so the rendering can be tailored to 
+                    particular communities of users.
+                    </dc:description> 
+                    <dc:description>Comment: 23 pages including 2 appendices, 
+                    8 figures</dc:description> 
+                    <dc:date>2001-12-14</dc:date>
+                </oai_dc:dc>
+            </oai:metadata>
+        </oai:record>
+        {% endfor %]
+    </ListRecords>
+</Repository>
