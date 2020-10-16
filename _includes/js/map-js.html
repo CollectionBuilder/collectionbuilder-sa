@@ -73,9 +73,9 @@
         if (feature.properties.youtube) {
             var thumbSrc = 'https://img.youtube.com/vi/' + feature.properties.youtube + '/default.jpg';
         } else if (feature.properties.format.includes("audio")) {
-            thumbSrc = '{{ "/assets/img/audio.svg" | relative_url }}';
+            thumbSrc = '{{ "/assets/icons/file-play.svg" | relative_url }}';
         } else if (feature.properties.format.includes("video")) {
-            thumbSrc = '{{ "/assets/img/video.svg" | relative_url }}';
+            thumbSrc = '{{ "/assets/icons/film.svg" | relative_url }}';
         } else {
             var thumbSrc = feature.properties.filename;
         }
