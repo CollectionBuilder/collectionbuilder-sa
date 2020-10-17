@@ -2,13 +2,13 @@
 
 CollectionBuilder uses Jekyll to generate specialized derivatives of your metadata to consume for visualizations, and to expose for others to download.
 
-Data used by the website and available for download is in the `data/` directory.
+Data used by the website and available for download is in the `/assets/data/` directory.
 
 Data used by the visualizations is usually specialized and optimized for page load, thus limited to the exact fields and information used by the specific page consuming it.
 
 Since this data is not easy to understand or reuse, CollectionBuilder also generates more complete versions for others to consume. 
 
-The `/data/metadata.csv`, `/data/metadata.json`, and `/data/geodata.json` data downloads are driven by the `site.data.theme.metadata-export-fields`. 
+The `/assets/data/metadata.csv`, `/assets/data/metadata.json`, and `/assets/data/geodata.json` data downloads are driven by the `site.data.theme.metadata-export-fields`. 
 This means the CSV/JSON download can be more complete, containing more fields than are displayed anywhere on the site.
 
 Other data derivatives are provided to explore and quantify collection content.
