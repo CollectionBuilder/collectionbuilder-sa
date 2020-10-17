@@ -1,7 +1,7 @@
 ---
 title: Data
 layout: data
-permalink: /data/
+permalink: /data.html
 ---
 
 ## Collection Metadata
