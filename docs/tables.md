@@ -12,7 +12,7 @@ The table will be sorted by the second column (typically "Date").
 The config-table options drive the creation of:
 
 - table viz page (`/data/index.html`)
-- `/data/metadata.min.json` is the table data in an optimized format specifically intended for the consumption by the table viz page in this project. Each item is a list of values without keys and links are relative.
+- `/assets/js/metadata.min.json` is the table data in an optimized format specifically intended for the consumption by the table viz page in this project. Each item is a list of values without keys and links are relative.
 
 Since the fields listed will become columns of the web table, it is best to not select too many. 
 The table will render well with about 3 to 5 fields.
