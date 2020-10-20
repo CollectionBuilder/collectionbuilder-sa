@@ -1,7 +1,7 @@
 ---
 # create OAI-PMH static repository xml file 
 # see docs/oai-pmh.md for details
-# the gateway-baseurl must be set here for the static repository to be valid
+# the gateway-baseurl and admin-email must be set here for the static repository to be valid
 gateway-baseurl: http://gateway.institution.org/oai/
 admin-email: libstatic.uidaho@gmail.com
 ---
@@ -47,7 +47,7 @@ admin-email: libstatic.uidaho@gmail.com
                     <dc:title>{{ item.title | xml_escape }}</dc:title>
                     {% for f in fields %}
                     {%- assign map = f.dc_map | split: "." | last -%}{%- if oai_dc_fields contains map -%}
-                    <dc:{{ map }}>{{ item[f.field] }}</dc:{{ map }}>
+                    <dc:{{ map }}>{{ item[f.field] | xml_escape }}</dc:{{ map }}>
                     {% elsif map == "created" or map == "date" %}<dc:date>{{ item[f.field] }}</dc:date>
                     {%- endif -%}
                     {%- endfor -%}
