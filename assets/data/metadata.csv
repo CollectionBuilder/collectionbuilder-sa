@@ -3,6 +3,6 @@
 ---
 {%- assign items = site.data[site.metadata] -%}
 {%- assign fields = site.data.theme.metadata-export-fields | split: "," -%}
-{{ fields | join: "," }},reference_url
-{% for item in items %}{% for f in fields %}"{{ item[f] | escape }}",{% endfor %}"{{ "/items/" | absolute_url | append: item.objectid | append: ".html" }}"
+{{ fields | join: "," }},object_thumb,object_download,reference_url
+{% for item in items %}{% for f in fields %}"{{ item[f] | escape }}",{% endfor %}"{{ site.url }}{% include image/thumb.html %}","{{ site.url }}{% include download/item.html %}","{{ '/items/' | absolute_url | append: item.objectid | append: '.html' }}"
 {% endfor %}
