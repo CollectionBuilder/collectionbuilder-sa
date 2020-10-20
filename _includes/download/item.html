@@ -1,1 +1,1 @@
-{% unless item.youtubeid or page.youtubeid %}{{ site.objects | absolute_url }}/{{ page.filename | default: item.filename }}{% else %}https://youtu.be/{{ page.youtubeid | default: item.youtubeid }}{% endunless %}
+{% if item.youtubeid  or page.youtubeid %}https://youtu.be/{{ page.youtubeid | default: item.youtubeid }}{% elsif page.filename contains '/' or item.filename contains '/' %}{{ page.filename | default: item.filename }}{% else %}{{ site.objects | absolute_url }}/{{ page.filename | default: item.filename }}{% endif %}
