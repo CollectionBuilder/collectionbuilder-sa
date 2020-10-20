@@ -27,10 +27,17 @@ A link to the source code repository will be included if `source-code` is set in
 The data found in `/assets/data/` can be seen as a "datapackage" containing all the derivatives related to the collection.
 This data is described by two markup standards. 
 
-First, the Data page (`/data.html`) contains [schema.org Dataset](https://schema.org/Dataset) markup embedded on the page in json+ld format. 
+First, the Data page (`/data.html`) contains [schema.org Dataset](https://schema.org/Dataset) markup embedded on the page in json+ld format (written in the `_includes/data-download-modal.html` file). 
 This markup is [required by Google](https://developers.google.com/search/docs/data-types/dataset) to be indexed into their datasets search engine. 
 
 Second, `/assets/data/` contains `datapackage.json` as described by the Frictionless Data [Data Package Spec](https://specs.frictionlessdata.io/data-package/).
 Each data file "resource" is described following the [Data Resource Spec](https://specs.frictionlessdata.io/data-resource/).
 
 Both methods provide metadata about the collection and a list of all downloadable data formats, documenting the data for better reuse and preservation.
+
+## Data download logic
+
+The data downloads displayed on the Data page, on the home page "Collections as Data" box, and in the data markup schemas is based on which pages are present in `config-nav.csv` "stub" field. 
+If stubs contain "subject", "location", "map", and/or "timeline" the corresponding data formats will be displayed for download and included in the markup.
+If you change the default name of the stubs, or use the default pages for different content, this logic may display the incorrect set of data. 
+Please manually check over `_includes/data-download-modal.html`, `_includes/index/data-download.html` and `assets/data/datapackage.json` to select the correct files.
