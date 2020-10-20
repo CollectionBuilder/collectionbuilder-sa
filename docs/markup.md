@@ -17,7 +17,7 @@ Recommended fields to map include:
 
 - `DCTERMS.title`
 - `DCTERMS.creator`
-- `DCTERMS.created`
+- `DCTERMS.created` or `DCTERMS.date`
 - `DCTERMS.description`
 - `DCTERMS.subject`
 - `DCTERMS.type`
