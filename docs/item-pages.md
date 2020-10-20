@@ -1,6 +1,6 @@
 # Item pages
 
-CollectionBuilder-CONTENTdm uses `data_page_generator.rb` plugin to generate individual pages for each item in the collection metadata on the fly.
+CollectionBuilder-SA uses `data_page_generator.rb` plugin to generate individual pages for each item in the collection metadata on the fly.
 Page gen options are configured in `_config.yml`, with the block:
 
 ```
