@@ -97,9 +97,16 @@
     "@type":"Dataset",
     "name":"{{ site.title | escape }} Data",
     "description":"Metadata and data derived from {{ site.title | escape }}. {{ site.description | escape }}",
+    {% if site.keywords %}"keywords": {% assign keywords = site.keywords | split: ';' %} {{ keywords | jsonify }},{% endif %}
     "url":"{{ page.url | absolute_url }}",
     "license" : "https://creativecommons.org/publicdomain/zero/1.0/",
-    {% if site.keywords %}"keywords": {% assign keywords = site.keywords | split: ';' %} {{ keywords | jsonify }},{% endif %}
+    "creator": [
+        {
+            "@type": "Organization",
+            "sameAs": "{{ site.organization-link }}",
+            "name": "{{ site.organization-name }}"
+        }
+    ],
     "hasPart" : [
         {% if site.data.theme.metadata-facets-fields %}
         {
@@ -204,11 +211,6 @@
                 }
             ]
         }
-    ],
-    "creator":{
-        "@type":"Organization",
-        "url": "{{ site.organization-link }}",
-        "name":"{{ site.organization-name }}"
-    }
+    ]
 }
 </script>
