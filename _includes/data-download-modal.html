@@ -99,6 +99,7 @@
     "description":"Metadata and data derived from {{ site.title | escape }}. {{ site.description | escape }}",
     "url":"{{ page.url | absolute_url }}",
     "license" : "https://creativecommons.org/publicdomain/zero/1.0/",
+    {% if site.keywords %}"keywords": {% assign keywords = site.keywords | split: ';' %} {{ keywords | jsonify }},{% endif %}
     "hasPart" : [
         {% if site.data.theme.metadata-facets-fields %}
         {
