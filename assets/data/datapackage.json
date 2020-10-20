@@ -13,7 +13,7 @@
     "homepage": "{{ '/' | absolute_url }}",
     "contributors": [
         {
-            "title": "{{ site.organization-name }}",
+            "title": "{{ site.organization-name | escape }}",
             "path": "{{ site.organization-link }}",
             "role": "author"
         }
