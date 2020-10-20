@@ -7,8 +7,8 @@
     {%- for item in items -%}
     { 
         {% for f in fields %}{% if item[f] %}{{ f | jsonify }}: {{ item[f] | jsonify }},{% endif %}
-        {% endfor %}"object_thumb": "{{ site.url }}{% include image/thumb.html %}",
-        "object_download": "{{ site.url }}{% include download/item.html %}",
+        {% endfor %}"object_thumb": "{% include image/thumb.html %}",
+        "object_download": "{% include download/item.html %}",
         "reference_url": {{ "/items/" | append: item.objectid | append: ".html" | absolute_url | jsonify }}
     }{% unless forloop.last %},{% endunless %}
     {% endfor %}
