@@ -1,5 +1,7 @@
 # Rich markup
 
+Pages in CollectionBuilder contain machine readable rich markup following several standards to improve discoverability, search representation, and social media sharing.
+
 ## Dublin Core 
 
 Dublin Core elements are added to Item pages driven by the "dc_map" column of config-metadata.csv.
@@ -24,14 +26,29 @@ Recommended fields to map include:
 
 This implementation is based on DSpace, following the [DC-HTML](https://www.dublincore.org/specifications/dublin-core/dc-html/2008-08-04/) conventions.
 
+## Open Graph Protocol
+
+[Open Graph](https://opengraphprotocol.org/) provides basic metadata in a open standard used by social media sites to generate representations of links shared on the platform.
+Open Graph was established by Facebook, but can be read by other platforms.
+
+OG meta tags are automatically added to every page and are not configurable.
+They provide an authoritative title, description, and image that can be used to represent a link to the page.
+The OG image will be the item image/thumb in the case of item pages, or the site featured image for all other pages.
+For example:
+
+`<meta property="og:title" content="{{ page.title | escape }}" />`
+
 ## Schema.org 
 
 Schema is a standard designed to provide structured semantic markup for search engines to better understand content of web pages. 
 The concepts described apply to a generalized web landscape, centered mostly around commercial sites, and don't necessarily follow the logic and structure of library-based metadata or digital collections.
 However, it is useful to provide the markup to drive better representations of the data in search results.
 See [Full Schema hierarchy](https://schema.org/docs/full.html), or [Google Guide to Structure Data](https://developers.google.com/search/docs/guides/intro-structured-data).
+
 Keep in mind that Schema is an open standard, however, Google is the biggest consumer, so information found in Google's [Developer Docs](https://developers.google.com/) is potentially more pragmatically useful (e.g. Google highly recommends using JSON-LD vs. Schema suggesting microdata).
 Markup can be tested using Google's [Structured Data Testing Tool](https://search.google.com/structured-data/testing-tool).
+
+The Schema markup is different on a variety of page types:
 
 ### Item pages 
 
@@ -80,18 +97,8 @@ For example, if I want to show all data downloads, even though I don't have the 
 
 `{%- assign stubs = "subject;map;location;timeline" -%}`
 
+Also check docs/data.md for more information.
+
 ### Content pages
 
 Other pages in the site receive more basic markup from the head/page-meta.html include following the [WebPage schema type](https://schema.org/WebPage).
-
-## Open Graph Protocol
-
-[Open Graph](https://opengraphprotocol.org/) provides basic metadata in a open standard used by social media sites to generate representations of links shared on the platform.
-Open Graph was established by Facebook, but can be read by other platforms.
-
-OG meta tags are automatically added to every page and are not configurable.
-They provide an authoritative title, description, and image that can be used to represent a link to the page.
-The OG image will be the item image/thumb in the case of item pages, or the site featured image for all other pages.
-For example:
-
-`<meta property="og:title" content="{{ page.title | escape }}" />`

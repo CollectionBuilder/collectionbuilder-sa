@@ -41,3 +41,5 @@ The data downloads displayed on the Data page, on the home page "Collections as 
 If stubs contain "subject", "location", "map", and/or "timeline" the corresponding data formats will be displayed for download and included in the markup.
 If you change the default name of the stubs, or use the default pages for different content, this logic may display the incorrect set of data. 
 Please manually check over `_includes/data-download-modal.html`, `_includes/index/data-download.html` and `assets/data/datapackage.json` to select the correct files.
+
+See docs/markup.md for additional information.
