@@ -23,7 +23,9 @@ title: CollectionBuilder SA
 tagline: Digital Collection Magic with Static Web Technologies
 # description appears in meta tags and other locations
 # this description might appear in search result lists, keep around 160 characters max
-description: "CollectionBuilder-SA is a template for creating digital collection exhibits using static web technology."  
+description: "CollectionBuilder-SA is a template for creating digital collection exhibits using static web technology."
+# keywords, a short list of subjects describing the collection, separated by semicolon, to appear in rich markup
+keywords: idaho;history;inland northwest
 # creator of the digital collection, to appear in meta tags; we typically use our GitHub usernames but feel free to just use your name
 author: CollectionBuilder
 # Organization branding

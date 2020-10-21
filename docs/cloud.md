@@ -19,7 +19,7 @@ locations-stopwords: # set of subjects separated by ; that will be removed from 
 
 These theme configuration options drive pre-made pages (with layout `subjects` and `locations` respectively), and use the layout value to add an _include via `foot.html` (which allows the theme values to be used).
 Modifying the config settings can easily transform these two pages into clouds based on any metadata field.
-These settings also create matching data outputs in the `/data/` folder.
+These settings also create matching data outputs in the `/assets/data/` folder.
 
 If `subjects-fields` or `locations-fields` is blank or commented out, the template will not build out the related cloud page or data, which saves build time. 
 If you are developing a particularly large collection, you can comment out these options to make rebuild much quicker. 
