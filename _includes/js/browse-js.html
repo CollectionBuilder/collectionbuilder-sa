@@ -8,16 +8,16 @@ function makeCard(obj) {
     // find item link
     var itemHref = "{{ '/items/' | relative_url }}" + obj.id + ".html";
     // find images
-    if(obj.youtube) {
-        var imgSrc = 'https://img.youtube.com/vi/' + obj.youtube + '/hqdefault.jpg';
-    } else if(obj.format.includes('image')) { 
-        var imgSrc = obj.filename;
+    if(obj.img) {
+        // if there is a thumb in the csv display it
+        var imgSrc = obj.img;
+    // else add a placeholder based on format
     } else if (obj.format.includes("audio")) {
-      thumbSrc = '{{ "/assets/icons/file-play.svg" | relative_url }}';
+      thumbSrc = '{{ "/assets/img/audio.svg" | relative_url }}';
     } else if (obj.format.includes("pdf")) {
-      thumbSrc = '{{ "/assets/icons/file-richtext.svg" | relative_url }}';
+      thumbSrc = '{{ "/assets/img/pdf.svg" | relative_url }}';
     } else {
-        var thumbSrc = obj.filename;
+        var thumbSrc = '{{ "/assets/img/pdf.svg" | relative_url }}';
     }
     // start card
     var card = '<div class="item col-lg-4 col-md-6 col-sm-12 mb-2"><div class="card">';
@@ -53,21 +53,17 @@ function makeCard(obj) {
     // media type
     if(obj.format != "") {
         card += '<p class="card-text"><small><a class="btn btn-sm btn-outline-secondary" href="{{ "/browse.html" | relative_url }}#' + encodeURIComponent(obj.format) + '">' + 
-        obj.format.split("/").pop().toUpperCase() + ' <img src="{{ "/assets/icons/" | relative_url}}';
+        obj.format.split("/").pop().toUpperCase() + ' <span class="';
         if(obj.format.includes('image')){
-        card += 'file-image';
+        card += 'far fa-image';
         } else if(obj.format.includes('audio')){
-        card += 'file-play';
+        card += 'far fa-file-audio';
         } else if(obj.format.includes('video')){
-        card += 'film';
-        } else if(obj.format.includes('url')){
-        card += 'link';
-        } else if(obj.format.includes('record')){
-        card += 'file-text';
+        card += 'far fa-file-video';
         } else {
-        card += 'file-richtext';
+        card += 'far fa-file';
         }
-        card += '.svg" alt="" class="pb-1 img-fluid" title="Bootstrap icon"></a></small></p>';
+        card += '"></span></a></small></p>';
     }
     // view button
     card += '<hr><a href="' + itemHref + '" class="btn btn-sm btn-light" title="link to ' + obj.title + '">View Full Record</a>';
@@ -124,7 +120,7 @@ function shuffle(array) {
 /* add items */
 var items = [
     {% for i in items %}
-    { "title":{{ i.title | strip | escape | jsonify }}, "format":{% if i.format %}{{ i.format | escape | jsonify }}{% else %}""{% endif %}, {% for f in fields %}{% if i[f.field] %}{{ f.field | escape | jsonify }}:{{ i[f.field] | strip | jsonify }},{% endif %}{% endfor %} {% if i.youtubeid %} "youtube": {{ i.youtubeid | jsonify }},{% endif %}{% if  i.filename contains '/' %}"filename": "{{ i.filename }}" {% else %}"filename":"{{ site.objects | relative_url }}/thumbs/{{ i.filename | downcase | split: '.' | first }}_th.jpg"{% endif %},"id":{{ i.objectid | jsonify }} }  {% unless forloop.last %},{% endunless %}{% endfor %}
+    { "title":{{ i.title | strip | escape | jsonify }}, "format":{% if i.format %}{{ i.format | escape | jsonify }}{% else %}""{% endif %}, {% for f in fields %}{% if i[f.field] %}{{ f.field | escape | jsonify }}:{{ i[f.field] | strip | jsonify }},{% endif %}{% endfor %}{% if  i.img_thumb %} "img": {{ i.img_thumb | jsonify }},{% endif %} "id":{{ i.objectid | jsonify }} }  {% unless forloop.last %},{% endunless %}{% endfor %}
 ];
 
 /* init browse page */

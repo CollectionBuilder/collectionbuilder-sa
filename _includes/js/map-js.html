@@ -14,7 +14,7 @@
     {% for item in items %}
     { "type":"Feature", "geometry":{ "type":"Point", "coordinates":[{{ item.longitude | strip }},{{ item.latitude | strip }}] }, "properties":
     { "title": {{ item.title | escape | jsonify }}, 
-    {% for f in fields %}{{ f.field | escape | jsonify }}: {{ item[f.field] | escape | jsonify }},{% endfor %}{% if item.youtubeid %} "youtube": {{ item.youtubeid | jsonify }},{% endif %}{% if  item.filename contains '/' %}"filename": {{ item.filename | jsonify }}{% else %}"filename":"{{ site.objects | relative_url }}/thumbs/{{ item.filename | downcase | split: '.' | first }}_th.jpg"{% endif %}, "format": {{ item.format | jsonify }}, "id": {{ item.objectid | jsonify }} } }{% unless forloop.last %}, {% endunless %}{% endfor %}
+    {% for f in fields %}{{ f.field | escape | jsonify }}: {{ item[f.field] | escape | jsonify }},{% endfor %}{% if item.img_thumb %} "img": {{ item.img_thumb | jsonify }},{% endif %} "format": {{ item.format | jsonify }}, "id": {{ item.objectid | jsonify }} } }{% unless forloop.last %}, {% endunless %}{% endfor %}
     ]};
 
     /* init map and set zoom */
@@ -70,14 +70,14 @@
         feature.layer = layer;{% endif %}
         /* create pop up */
         var itemHref = '{{ site.baseurl }}/items/' + feature.properties.id + '.html';
-        if (feature.properties.youtube) {
-            var thumbSrc = 'https://img.youtube.com/vi/' + feature.properties.youtube + '/default.jpg';
+        if (feature.properties.img) {
+            var thumbSrc = feature.properties.img;
         } else if (feature.properties.format.includes("audio")) {
-            thumbSrc = '{{ "/assets/icons/file-play.svg" | relative_url }}';
+            var thumbSrc = '{{ "/assets/img/audio.svg" | relative_url }}';
         } else if (feature.properties.format.includes("video")) {
-            thumbSrc = '{{ "/assets/icons/film.svg" | relative_url }}';
+            var thumbSrc = '{{ "/assets/img/video.svg" | relative_url }}';
         } else {
-            var thumbSrc = feature.properties.filename;
+            var thumbSrc = '{{ "/assets/img/pdf.svg" | relative_url }}';
         }
         var popupTemplate = '<h4><a class="text-dark" href="' + itemHref + '">' +
             feature.properties.title + '</a></h4><div class="text-center"><a class="btn btn-light" href="' + itemHref + 
