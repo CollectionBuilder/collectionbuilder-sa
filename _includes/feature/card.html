@@ -17,7 +17,7 @@
 <div class="card mb-3{% if include.float %} feature-float-{{ include.float }}{% endif %}{% if include.width %} feature-w-{{ include.width }}{% endif %}{% if include.centered %} mx-auto{% endif %}">
 {% if include.objectid %}
 {% assign item = site.data[site.metadata] | where: "objectid", include.objectid | first %}
-<img class="card-img-top" src="{% include image/small.html %}" alt="{{ item.title | escape }}">
+<img class="card-img-top" src="{{ item.img_small }}" alt="{{ item.title | escape }}">
 {%- endif -%}
 {% if include.header %}<h5 class="card-header">{{ include.header }}</h5>{% endif %}
 <div class="card-body">

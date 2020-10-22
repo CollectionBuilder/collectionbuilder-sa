@@ -22,7 +22,7 @@
     <div class="col-md text-center">
         <figure class="figure mx-3{% if include.float %} feature-float-{{ include.float }}{% endif %}{% if include.width %} feature-w-{{ include.width }}{% endif %}">
             <a href="{{ '/items/' | append: item.objectid | append: '.html' | relative_url }}">
-                <img class="figure-img img-fluid rounded lazyload" alt="{{ item.title | escape }}" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 2'%3E%3C/svg%3E" data-src="{% include image/small.html %}" >
+                <img class="figure-img img-fluid rounded lazyload" alt="{{ item.title | escape }}" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 2'%3E%3C/svg%3E" data-src="{{ item.img_small }}" >
             </a>
             {% unless include.caption == false %}<figcaption class="figure-caption">{% if include.caption %}{{ include.caption }}{% else %}{{ item.title }}{% endif %}</figcaption>{% endunless %}
         </figure>
