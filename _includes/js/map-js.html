@@ -14,7 +14,7 @@
     {% for item in items %}
     { "type":"Feature", "geometry":{ "type":"Point", "coordinates":[{{ item.longitude | strip }},{{ item.latitude | strip }}] }, "properties":
     { "title": {{ item.title | escape | jsonify }}, 
-    {% for f in fields %}{{ f.field | escape | jsonify }}: {{ item[f.field] | escape | jsonify }},{% endfor %}{% if item.image_thumb %} "img": {{ item.image_thumb | jsonify }},{% endif %} "format": {{ item.format | jsonify }}, "id": {{ item.objectid | jsonify }} } }{% unless forloop.last %}, {% endunless %}{% endfor %}
+    {% for f in fields %}{{ f.field | escape | jsonify }}: {{ item[f.field] | escape | jsonify }},{% endfor %}{% if item.image_thumb %} "img": {{ item.image_thumb | relative_url | jsonify }},{% endif %} "format": {{ item.format | jsonify }}, "id": {{ item.objectid | jsonify }} } }{% unless forloop.last %}, {% endunless %}{% endfor %}
     ]};
 
     /* init map and set zoom */
@@ -69,7 +69,7 @@
         {% if site.data.theme.map-search == true %}/* bind feature for search */
         feature.layer = layer;{% endif %}
         /* create pop up */
-        var itemHref = '{{ site.baseurl }}/items/' + feature.properties.id + '.html';
+        var itemHref = '{{ "/items/" | relative_url }}' + feature.properties.id + '.html';
         if (feature.properties.img) {
             var thumbSrc = feature.properties.img;
         } else if (feature.properties.format.includes("audio")) {
