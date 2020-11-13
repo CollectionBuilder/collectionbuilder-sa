@@ -6,13 +6,13 @@ See general documentation: https://collectionbuilder.github.io/docs/metadata.htm
 
 - `objectid`: unique string, all lowercase with no spaces or special characters as it will used to form the item’s URL. Underscores (_) and dashes (-) are okay; slashes (/) should NOT be used in this field. Objects without an objectid will not be displayed in the collection. Objects with non-unique objectid will be overwritten.
 - `title`: string description of object, used through out the template in representations of the object. A title is not technically required, but will leave blanks areas in the template.
-- `format`: object's MIME media type, used by template logic to switch between different visualizations and features. A format is not technically required, but the fall back of the logic may not make sense for the given object.
 
 ## Object Download and Display images
 
 - `object_download`: a full URL to download the digital object or relative path if items are contained with in the project.
 - `image_small`: a full URL to a small image representation of the object or relative path if items are contained with in the project.
 - `image_thumb`: a full URL to a thumb image representation of the object or relative path if items are contained with in the project.
+- `format`: object's MIME media type. If an object does not have an image_small or image_thumb, format is used by template logic to switch between different icons.
 
 Each object will likely have an object_download value, the link where the digital file can be downloaded (or potentially accessed in a different platform). 
 It is not a required field--items without an object_download will become metadata only records.
@@ -23,8 +23,9 @@ If image derivatives are not available (i.e. the field is left blank), the logic
 These fields should be filed out in your spreadsheet using formulas / recipes depending on where your objects are hosted. 
 This provides flexibility to include objects from multiple sources and to generate the URLs using a variety of approaches without needing to modify the template code.
 
-If the objects are included within the project repository, for example in the "objects" folder, use a relative path, e.g. `/objects/example_object.jpg`.
+If the objects are included within the project repository use a relative path. 
 The relative path will be converted into a full URL during build.
+For example if some images are in the "objects" folder, use a relative path, e.g. `/objects/example_object.jpg`.
 
 ## Object Template
 
@@ -33,7 +34,7 @@ The relative path will be converted into a full URL during build.
 ### image template 
 
 Displays image_small if available, with fall back to object_download. 
-Adds LightGallery view.
+Adds LightGallery view to open images full screen using object_download, with fall back to image_small.
 
 ### pdf template
 
