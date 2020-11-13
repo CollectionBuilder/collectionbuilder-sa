@@ -1,5 +1,6 @@
 ---
 layout: page
+custom-foot: js/browse-js.html
 ---
 
 {{ content }}
@@ -23,7 +24,7 @@ layout: page
             <div class="dropdown-menu browse-sort-menu" aria-labelledby="browseSortButton">
                 <button class="dropdown-item browse-sort-item active" data-filter="random">Random</button>
                 <button class="dropdown-item browse-sort-item" data-filter="title">Title</button>
-                {% assign sort_options = site.data.config-browse | where_exp: 'i','i.sort_name != nil' %}
+                {% assign sort_options = site.data.config-browse | where_exp: 'i','i.sort_name' %}
                 {% for o in sort_options %}
                 <button class="dropdown-item browse-sort-item" data-filter="{{ o.field | escape }}">{{ o.sort_name }}</button>
                 {% endfor %}

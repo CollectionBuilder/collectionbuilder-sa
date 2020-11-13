@@ -4,7 +4,6 @@
 <!-- load other js -->
 <script src="{{ '/assets/lib/lazysizes.min.js' | absolute_url }}" async></script>
 {% if layout.gallery == true or page.gallery == true %}{% include js/gallery-js.html %}{% endif %}
-{% if page.layout == "browse" %}{% include js/browse-js.html %}{% endif %}
 {% if page.layout == "subjects" and site.data.theme.subjects-fields %}{% include js/cloud-js.html fields=site.data.theme.subjects-fields min=site.data.theme.subjects-min stopwords=site.data.theme.subjects-stopwords %}{% endif %}
 {% if page.layout == "locations" and site.data.theme.locations-fields %}{% include js/cloud-js.html fields=site.data.theme.locations-fields min=site.data.theme.locations-min stopwords=site.data.theme.locations-stopwords %}{% endif %}
 {% if page.layout == "item" %}{% include js/arrow-page-control-js.html %}{% endif %}
