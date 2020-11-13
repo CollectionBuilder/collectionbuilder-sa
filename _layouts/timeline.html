@@ -42,12 +42,15 @@ custom-foot: js/timeline-js.html
                 <div class="col-lg-4 col-md-6">
                     <a href="{{ '/items/' | append: item.objectid | append: '.html' | relative_url }}" >
                         {% if item.image_thumb or item.image_small %}
-                        <img class="lazyload img-thumbnail" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 2'%3E%3C/svg%3E" data-src="{{ item.image_thumb | default: image_small | relative_url }}" alt="{{ item.title | escape }}" data-toggle="tooltip" data-placement="bottom" title="{{ item.title | escape }} | {{ item.date | escape }}">
+                        <img class="lazyload img-thumbnail" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 2'%3E%3C/svg%3E" data-src="{{ item.image_thumb | default: item.image_small | relative_url }}" alt="{{ item.title | escape }}" data-toggle="tooltip" data-placement="bottom" title="{{ item.title | escape }} | {{ item.date | escape }}">
                         {% else %}
                         <div class="card"> 
                             <div class="card-body text-center">
-                                <h5 class="card-title text-dark">{{ item.title }}</h5>
-                                <img class="lazyload img-thumbnail w-50" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 2'%3E%3C/svg%3E" data-src="{% if item.format contains 'audio' %}{{ '/assets/img/audio.svg' | relative_url }}{% elsif item.format contains 'video' %}{{ '/assets/img/video.svg' | relative_url }}{% else %}{{ '/assets/img/pdf.svg' | relative_url }}{% endif %}" alt="{% if item.format contains 'audio' %}Audio{% elsif item.format contains 'video' %}Video{% else %}File{% endif %} filetype icon">
+                                <div class="h5 text-dark">{{ item.title }}</div>
+                                <svg class="bi w-50 text-body" fill="currentColor">
+                                    <use xlink:href="{{ '/assets/lib/bootstrap-icons.svg' | relative_url }}#{% if item.format contains 'image' %}image{% elsif item.format contains 'audio' %}file-earmark-music{% elsif item.format contains 'video' %}file-earmark-play{% else %}file-earmark{% endif %}"/>
+                                </svg>
+                                <span class="sr-only">File icon</span>
                             </div>
                         </div>
                         {% endif %}
