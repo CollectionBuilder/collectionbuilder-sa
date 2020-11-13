@@ -15,7 +15,7 @@ gallery: true
             <div class="card mb-4 text-center">
                 {% if page.format contains 'image' %}
                 <div class="gallery-img" data-src="{{ page.object_download }}">
-                    <p><img src="{{ page.img_small }}" alt="item thumbnail for {{ page.title | escape }}" class="img-fluid"></p>
+                    <p><img src="{{ page.image_small }}" alt="item thumbnail for {{ page.title | escape }}" class="img-fluid"></p>
                     <p><small>Click to view full screen</small></p>
                 </div>
                 {%- else -%}
@@ -34,7 +34,7 @@ gallery: true
                             Your browser does not support the video tag.
                         </video>
                         {%- else -%}
-                        <a href="{{ page.object_download }}" target="_blank"><img src="{{ page.img_thumb }}" alt="item thumbnail for {{ page.title | escape }}" class="img-fluid thumb"></a>
+                        <a href="{{ page.object_download }}" target="_blank"><img src="{{ page.image_thumb }}" alt="item thumbnail for {{ page.title | escape }}" class="img-fluid thumb"></a>
                         {%- endif -%}
                     </p>
                 </div>

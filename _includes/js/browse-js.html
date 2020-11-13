@@ -120,7 +120,7 @@ function shuffle(array) {
 /* add items */
 var items = [
     {% for i in items %}
-    { "title":{{ i.title | strip | escape | jsonify }}, "format":{% if i.format %}{{ i.format | escape | jsonify }}{% else %}""{% endif %}, {% for f in fields %}{% if i[f.field] %}{{ f.field | escape | jsonify }}:{{ i[f.field] | strip | jsonify }},{% endif %}{% endfor %}{% if  i.img_thumb %} "img": {{ i.img_thumb | jsonify }},{% endif %} "id":{{ i.objectid | jsonify }} }  {% unless forloop.last %},{% endunless %}{% endfor %}
+    { "title":{{ i.title | strip | escape | jsonify }}, "format":{% if i.format %}{{ i.format | escape | jsonify }}{% else %}""{% endif %}, {% for f in fields %}{% if i[f.field] %}{{ f.field | escape | jsonify }}:{{ i[f.field] | strip | jsonify }},{% endif %}{% endfor %}{% if  i.image_thumb %} "img": {{ i.image_thumb | jsonify }},{% endif %} "id":{{ i.objectid | jsonify }} }  {% unless forloop.last %},{% endunless %}{% endfor %}
 ];
 
 /* init browse page */
