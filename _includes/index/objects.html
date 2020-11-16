@@ -10,19 +10,19 @@
       {{ count }}
       {% case t %}
       {% when 'image' %} 
-      <a class="text-dark" href="{{ 'image' | prepend: '/browse.html#' | relative_url }}">Images <img src="{{ '/assets/icons/'' | relative_url | append: 'file-image.svg'}}" alt="" class="pb-1 img-fluid" title="Bootstrap icon" /></a><br>
+      <a class="text-dark" href="{{ 'image' | prepend: '/browse.html#' | relative_url }}">Images {% include feature/icon.html icon="file-image" %}</a><br>
       {% when 'audio' %}
-      <a class="text-dark" href="{{ 'audio' | prepend: '/browse.html#' | relative_url }}">Audio <img src="{{ '/assets/icons/'' | relative_url | append: 'file-play.svg'}}" alt="" class="pb-1 img-fluid" title="Bootstrap icon" /></a><br>
+      <a class="text-dark" href="{{ 'audio' | prepend: '/browse.html#' | relative_url }}">Audio {% include feature/icon.html icon="file-play" %}</a><br>
       {% when 'video' %}
-      <a class="text-dark" href="{{ 'video' | prepend: '/browse.html#' | relative_url }}">Videos <img src="{{ '/assets/icons/'' | relative_url | append: 'film.svg'}}" alt="" class="pb-1 img-fluid" title="Bootstrap icon" /></a><br>
+      <a class="text-dark" href="{{ 'video' | prepend: '/browse.html#' | relative_url }}">Videos {% include feature/icon.html icon="film" %}</a><br>
       {% when 'pdf' %}
-      <a class="text-dark" href="{{ 'pdf' | prepend: '/browse.html#' | relative_url }}">PDFs <img src="{{ '/assets/icons/'' | relative_url | append: 'file-richtext.svg'}}" alt="" class="pb-1 img-fluid" title="Bootstrap icon" /></a><br>
+      <a class="text-dark" href="{{ 'pdf' | prepend: '/browse.html#' | relative_url }}">PDFs {% include feature/icon.html icon="file-richtext" %}</a><br>
       {% when 'record' %}
-      <a class="text-dark" href="{{ 'pdf' | prepend: '/browse.html#' | relative_url }}">Records <img src="{{ '/assets/icons/'' | relative_url | append: 'file-text.svg'}}" alt="" class="pb-1 img-fluid" title="Bootstrap icon" /></a><br>
+      <a class="text-dark" href="{{ 'pdf' | prepend: '/browse.html#' | relative_url }}">Records {% include feature/icon.html icon="file-text" %}</a><br>
       {% when 'url' %}
-      <a class="text-dark" href="{{ 'pdf' | prepend: '/browse.html#' | relative_url }}">URLs <img src="{{ '/assets/icons/'' | relative_url | append: 'link.svg'}}" alt="" class="pb-1 img-fluid" title="Bootstrap icon" /></a><br>
+      <a class="text-dark" href="{{ 'pdf' | prepend: '/browse.html#' | relative_url }}">URLs {% include feature/icon.html icon="link" %}</a><br>
       {% else %}
-      <a class="text-dark" href="{{ 'pdf' | prepend: '/browse.html#' | relative_url }}">Files <img src="{{ '/assets/icons/'' | relative_url | append: 'file.svg'}}" alt="" class="pb-1 img-fluid" title="Bootstrap icon" /></a><br>
+      <a class="text-dark" href="{{ 'pdf' | prepend: '/browse.html#' | relative_url }}">Files {% include feature/icon.html icon="file-earmark" %}</a><br>
       {%- endcase -%}
       {%- endif -%}
       {%- endfor -%}
