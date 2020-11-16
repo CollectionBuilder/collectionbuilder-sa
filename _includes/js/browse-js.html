@@ -55,15 +55,15 @@ function makeCard(obj) {
     // media type
     if(obj.format != "") {
         card += '<p class="card-text"><small><a class="btn btn-sm btn-outline-secondary" href="{{ "/browse.html" | relative_url }}#' + encodeURIComponent(obj.format) + '">' + 
-        obj.format.split("/").pop().toUpperCase() + ' <svg class="bi" width="1rem" height="1rem" fill="currentColor"><use xlink:href="{{ "/assets/lib/bootstrap-icons.svg" | relative_url }}#';
+        obj.format.split("/").pop().toUpperCase() + ' <svg class="bi icon-sprite"><use xlink:href="{{ "/assets/lib/bootstrap-icons.svg" | relative_url }}#';
         if(obj.format.includes('image')){
-        card += 'image';
+        card += 'file-image';
         } else if(obj.format.includes('audio')){
-        card += 'file-earmark-music';
+        card += 'file-play';
         } else if(obj.format.includes('video')){
-        card += 'file-earmark-play';
+        card += 'film';
         } else {
-        card += 'file-earmark';
+        card += 'file-richtext';
         }
         card += '"/></svg></a></small></p>';
     }
