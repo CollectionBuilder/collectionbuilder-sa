@@ -39,21 +39,21 @@ To build one, a user writes in [Markdown](https://guides.github.com/features/mas
 
 (Each included file has several options, which are documented in the files themselves. I've given the content widths of 25% and 50% to save space, but you can feature the entire image or document.) 
 
-- Image --> `{% raw %}{% include feature/item-figure.html objectid="demo001" width="25" %}{% endraw %}`
+- Image --> `{% raw %}{% include feature/item-figure.html objectid="demo_001" width="25" %}{% endraw %}`
 
-{% include feature/item-figure.html objectid="demo001" width="25" %}
+{% include feature/item-figure.html objectid="demo_001" width="25" %}
 
-- PDF -- > `{% raw %}{% include feature/item-pdf-embed.html objectid="demo002"  width="25" %}{% endraw %}`
+- PDF -- > `{% raw %}{% include feature/item-pdf-embed.html objectid="demo_002"  width="25" %}{% endraw %}`
 
-{% include feature/item-pdf-embed.html objectid="demo002" width="25" %}
+{% include feature/item-pdf-embed.html objectid="demo_002" width="25" %}
 
-- Video: `{% raw %}{% include feature/item-video-embed.html objectid="demo004" %}{% endraw %}`
+- Video: `{% raw %}{% include feature/item-video-embed.html objectid="demo_004" %}{% endraw %}`
 
-{% include feature/item-video-embed.html objectid="demo004" %}
+{% include feature/item-video-embed.html objectid="demo_004" %}
 
-- Card -- > `{% raw %}{% include feature/card.html header="This is a Card" text="The card features an image from the collection as a cap" objectid="demo004" width="25" centered=true %}{% endraw %}`
+- Card -- > `{% raw %}{% include feature/card.html header="This is a Card" text="The card features an image from the collection as a cap" objectid="demo_004" width="25" centered=true %}{% endraw %}`
 
-{% include feature/card.html header="This is a Card" text="The card features an image from the collection as a cap" objectid="demo004" width="25" centered=true %}
+{% include feature/card.html header="This is a Card" text="The card features an image from the collection as a cap" objectid="demo_004" width="25" centered=true %}
 
 - Buttons -- > `{% raw %}{% include feature/button.html text="Button Link to Somewhere" link="https://collectionbuilder.github.io/" color="success" %}{% endraw %}`
 
