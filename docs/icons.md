@@ -29,11 +29,16 @@ The svg element should have `aria-hidden="true"` added to avoid issues with the 
 The icon-sprite style icons can be added using the feature/icon.html include, 
 e.g. `{% include feature/icon.html icon="file-play" label="Audio file" %}`.
 
-To use an icon similar to an image, follow the pattern:
+To use an icon similar to an image (for example as an icon stand in for thumbnails on Browse or Timeline), follow the pattern:
 
 ```
-<svg class="bi w-50 text-body" fill="currentColor">
+<svg class="bi w-50 text-body" fill="currentColor" aria-hidden="true">
     <use xlink:href="{{ '/assets/lib/bootstrap-icons.svg' | relative_url }}#file-earmark-play"/>
 </svg>
 <span class="sr-only">File icon</span>
 ```
+
+In this example, the classes on the svg element control the size and color: 
+
+- `w-50` to set the svg to be 50% of the parent space. This makes it easy to create responsive icons if the svg element is inside a column div.
+- `text-body` to set the color. Any BS text color utility can be used, including your custom color theme classes.

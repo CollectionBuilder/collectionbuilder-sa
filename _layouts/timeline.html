@@ -47,7 +47,7 @@ custom-foot: js/timeline-js.html
                         <div class="card"> 
                             <div class="card-body text-center">
                                 <div class="h5 text-dark">{{ item.title }}</div>
-                                <svg class="bi w-50 text-body" fill="currentColor">
+                                <svg class="bi w-50 text-body" fill="currentColor" aria-hidden="true">
                                     <use xlink:href="{{ '/assets/lib/bootstrap-icons.svg' | relative_url }}#{% if item.format contains 'image' %}image{% elsif item.format contains 'audio' %}file-earmark-music{% elsif item.format contains 'video' %}file-earmark-play{% else %}file-earmark{% endif %}"/>
                                 </svg>
                                 <span class="sr-only">File icon</span>
