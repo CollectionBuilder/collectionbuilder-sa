@@ -107,3 +107,12 @@ text-color: "#191919"
 link-color: "#17a2b8"
 base-font-family: # comment out for bootstrap defaults. e.g. Roboto
 font-cdn: # add font stylesheet, e.g. <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+
+# THEME ICONS
+# the template uses Bootstrap Icons, https://icons.getbootstrap.com/
+# find the names on the BI icons page, e.g. file-image
+icon-image: file-image # image
+icon-audio: file-play # file-earmark-music
+icon-video: film # file-earmark-play
+icon-pdf: file-richtext # file-earmark
+icon-default: file-earmark # fall back icon
