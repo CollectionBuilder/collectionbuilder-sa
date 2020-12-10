@@ -13,12 +13,6 @@
 -->
 <meta name="generator" content="collectionbuilder-sa" />
 <meta http-equiv="Content-Language" content="en-us" >
-{% comment %} meta tags and analytics are added during production build ONLY {%- endcomment -%}
-{% if jekyll.environment == "production" %}
-{% if site.noindex == true or page.noindex == true or layout.noindex == true %}<meta name="robots" content="noindex" />{% endif %}
-{% if page.layout == "item" %}{% include head/item-meta.html %}{% else %}{% include head/page-meta.html %}{% endif %}
-{% if site.google-analytics-id %}{% include head/google-analytics.html %}{% endif %}
-{%- endif -%}
 
 {% if site.data.theme.font-cdn %}{{ site.data.theme.font-cdn }}{%- endif -%}
 <link rel="stylesheet" href="{% if site.data.theme.bootswatch %}https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/{{ site.data.theme.bootswatch }}/bootstrap.min.css{% else %}{{ '/assets/lib/bootstrap.min.css' | absolute_url }}{% endif %}" type="text/css">
@@ -30,4 +24,12 @@
 <link rel="stylesheet" href="{{ '/assets/lib/leaflet/MarkerCluster.Default.css' | absolute_url }}">{% endif %}{%- endif -%}
 <link rel="stylesheet" href="{{ '/assets/css/custom.css' | absolute_url }}" type="text/css">
 
+{% comment %} 
+  meta tags and analytics are added during production build ONLY 
+{%- endcomment -%}
+{% if jekyll.environment == "production" %}
+{% if site.noindex == true or page.noindex == true or layout.noindex == true %}<meta name="robots" content="noindex" />{% endif %}
+{% if page.layout == "item" %}{% include head/item-meta.html %}{% else %}{% include head/page-meta.html %}{% endif %}
+{% include head/analytics.html %}
+{%- endif -%}
 <!-- Last build date: {{ site.time | date: "%Y-%m-%d" }} -->
