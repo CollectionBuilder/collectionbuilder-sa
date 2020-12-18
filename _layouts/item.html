@@ -15,7 +15,7 @@ gallery: true
             <div class="card mb-4 text-center">
                 {% if page.format contains 'image' %}
                 <div class="gallery-img" data-src="{{ page.object_download }}">
-                    <p><img src="{{ page.image_small }}" alt="item thumbnail for {{ page.title | escape }}" class="img-fluid"></p>
+                    <p><img src="{{ page.image_small | relative_url }}" alt="item thumbnail for {{ page.title | escape }}" class="img-fluid"></p>
                     <p><small>Click to view full screen</small></p>
                 </div>
                 {%- else -%}
