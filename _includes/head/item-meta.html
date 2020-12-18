@@ -24,7 +24,7 @@
     "{{ f.schema_map }}": {{ page[f.field] | jsonify }},{% endif %}{% endfor %}
     "isPartOf": {{ site.title | jsonify }},
     "image": "{{ page.image_small | relative_url }}",
-    "thumbnailUrl": "{{ page.image_thumb }}",
+    "thumbnailUrl": "{{ page.image_thumb | relative_url }}",
     "url": {{ page.url | absolute_url | jsonify }}
 }
 </script> 
