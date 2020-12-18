@@ -23,9 +23,10 @@ If image derivatives are not available (i.e. the field is left blank), the logic
 These fields should be filed out in your spreadsheet using formulas / recipes depending on where your objects are hosted. 
 This provides flexibility to include objects from multiple sources and to generate the URLs using a variety of approaches without needing to modify the template code.
 
-If the objects are included within the project repository use a relative path. 
-The relative path will be converted into a full URL during build.
+If the objects are included within the project repository use the relative path starting with `/` from the root of the repository. 
 For example if some images are in the "objects" folder, use a relative path, e.g. `/objects/example_object.jpg`.
+The relative path will be converted into a full URL during build.
+Do not include the `baseurl` value that you set in "_config.yml", since this will be added by the template.
 
 ## Object Template
 
