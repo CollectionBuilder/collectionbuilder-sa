@@ -1,6 +1,6 @@
 # CollectionBuilder-SA 
 
-**Note: CollectionBuilder-SA is currently in an active development phase and my differ significantly from the main CollectionBuilder documentation. Please check "docs" folder in this project for up to date information.**
+**Note: CollectionBuilder-SA is currently in an active development phase and my differ significantly from the main CollectionBuilder documentation, including the metadata template. Please check "docs" folder in this project for up to date information.**
 
 CollectionBuilder-SA ("Stand Alone") is a template for creating digital collection and exhibit websites using Jekyll, given:
 
