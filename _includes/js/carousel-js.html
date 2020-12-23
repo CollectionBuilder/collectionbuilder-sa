@@ -8,7 +8,7 @@
     var i, itemImg;
     var slides = "";
     for (i=0; i < {{ carousel-items | size | at_most: 9 }}; i++) {
-        slide = "<div class='carousel-item text-center py-2'><img class='image-fluid mx-auto h-100 lazyload' alt='image highlight' src='" + placeholder + "' data-src='" + carouselItems[i][2] + "'> <div class='carousel-caption'><h5 class='carousel-item-title text-white py-2'>" + carouselItems[i][0] + "</h5><a target='_blank' href='{{ site.baseurl }}/items/" + carouselItems[i][2] + ".html' class='btn btn-sm btn-primary'>View Item</a></div></div>";
+        slide = "<div class='carousel-item text-center py-2'><img class='image-fluid mx-auto h-100 lazyload' alt='image highlight' src='" + placeholder + "' data-src='" + carouselItems[i][2] + "'> <div class='carousel-caption'><h5 class='carousel-item-title text-white py-2'>" + carouselItems[i][0] + "</h5><a href='{{ '/items/' | relative_url }}" + carouselItems[i][1] + ".html' class='btn btn-sm btn-primary'>View Item</a></div></div>";
         slides += slide;
     }
     carousel.innerHTML = slides;
