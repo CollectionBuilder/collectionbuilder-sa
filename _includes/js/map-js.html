@@ -71,17 +71,21 @@
         /* create pop up */
         var itemHref = '{{ "/items/" | relative_url }}' + feature.properties.id + '.html';
         if (feature.properties.img) {
-            var thumbSrc = feature.properties.img;
+            var thumbSrc = '<img class="map-thumb" src="' + feature.properties.img + '" alt="item thumbnail">';
+        } else if (feature.properties.format.includes("image")) {
+            var thumbSrc = '<svg class="bi text-body map-thumb" fill="currentColor"><use xlink:href="{{ "/assets/lib/bootstrap-icons.svg" | relative_url }}#{{ site.data.theme.icon-image | default: "file-image" }}"/></svg><span class="sr-only">Image File</span>';
         } else if (feature.properties.format.includes("audio")) {
-            var thumbSrc = '{{ "/assets/img/audio.svg" | relative_url }}';
+            var thumbSrc = '<svg class="bi text-body map-thumb" fill="currentColor"><use xlink:href="{{ "/assets/lib/bootstrap-icons.svg" | relative_url }}#{{ site.data.theme.icon-audio | default: "file-play" }}"/></svg><span class="sr-only">Audio File</span>';
         } else if (feature.properties.format.includes("video")) {
-            var thumbSrc = '{{ "/assets/img/video.svg" | relative_url }}';
+            var thumbSrc = '<svg class="bi text-body map-thumb" fill="currentColor"><use xlink:href="{{ "/assets/lib/bootstrap-icons.svg" | relative_url }}#{{ site.data.theme.icon-video | default: "film" }}"/></svg><span class="sr-only">Video File</span>';
+        } else if (feature.properties.format.includes("pdf")) {
+            var thumbSrc = '<svg class="bi text-body map-thumb" fill="currentColor"><use xlink:href="{{ "/assets/lib/bootstrap-icons.svg" | relative_url }}#{{ site.data.theme.icon-pdf | default: "file-richtext" }}"/></svg><span class="sr-only">Video File</span>';
         } else {
-            var thumbSrc = '{{ "/assets/img/pdf.svg" | relative_url }}';
+            var thumbSrc = '<svg class="bi text-body map-thumb" fill="currentColor"><use xlink:href="{{ "/assets/lib/bootstrap-icons.svg" | relative_url }}#{{ site.data.theme.icon-default | default: "file-earmark" }}"/></svg><span class="sr-only">File Icon</span>';
         }
         var popupTemplate = '<h4><a class="text-dark" href="' + itemHref + '">' +
-            feature.properties.title + '</a></h4><div class="text-center"><a class="btn btn-light" href="' + itemHref + 
-            '" ><img class="mapthumb" src="' + thumbSrc + '" alt="item thumbnail"></a></div><p class="mt-0">';
+            feature.properties.title + '</a></h4><div class="text-center"><a href="' + itemHref + 
+            '" >' + thumbSrc + '</a></div><p>';
         {% for f in fields %}{% if f.display_name %}
         if (feature.properties[{{ f.field | escape | jsonify }}]) {
             popupTemplate += '<strong>{{ f.display_name }}:</strong> ' + feature.properties[{{ f.field | escape | jsonify }}] + '<br>'; 

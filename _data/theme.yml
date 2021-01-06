@@ -111,8 +111,9 @@ font-cdn: # add font stylesheet, e.g. <link href="https://fonts.googleapis.com/c
 # THEME ICONS
 # the template uses Bootstrap Icons, https://icons.getbootstrap.com/
 # find the names on the BI icons page, e.g. file-image
-icon-image: file-image # image
-icon-audio: file-play # file-earmark-music
-icon-video: film # file-earmark-play
-icon-pdf: file-richtext # file-earmark
+icon-image: image
+icon-audio: file-play
+icon-video: film
+icon-pdf: file-richtext
 icon-default: file-earmark # fall back icon
+icon-scroll-to-top: arrow-up-square # icon for scroll to top button

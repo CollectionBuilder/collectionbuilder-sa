@@ -20,16 +20,19 @@
 
 /* map */
 #map { height: 750px; z-index: 98; }
-.mapthumb {
+.map-thumb {
     height: 100px;
+    max-width: 100%;
 }
 .leaflet-fusesearch-panel .header {
     padding-bottom: 1.5em;
 }
 
 /* timeline */
-#timeline .img-thumbnail { height: 110px; }
-
+.timeline-thumb {
+    height: 110px;
+    max-width: 100%;
+}
 /* subjects */
 .tagcloud0{font-size:0.4em;}
 .tagcloud1{font-size:0.5em;}
