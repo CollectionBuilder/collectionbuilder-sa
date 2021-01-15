@@ -57,6 +57,10 @@ Please ensure the youtubeid is the end of URL (e.g. `dbKNr3wuiuQ`, and does *not
 
 The template will parse the object_download link to find the youtubeid and set up a iframe embed using the modest branding and privacy options. 
 
+### record template
+
+For items that are metadata only records.
+
 ### compound-image template
 
 Looks for multiple image src separated by `;` in image_small and object_download.
