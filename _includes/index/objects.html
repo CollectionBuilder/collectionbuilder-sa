@@ -18,11 +18,11 @@
       {% when 'pdf' %}
       <a class="text-dark" href="{{ 'pdf' | prepend: '/browse.html#' | relative_url }}">PDFs {% include feature/icon.html icon="file-richtext" %}</a><br>
       {% when 'record' %}
-      <a class="text-dark" href="{{ 'pdf' | prepend: '/browse.html#' | relative_url }}">Records {% include feature/icon.html icon="file-text" %}</a><br>
+      <a class="text-dark" href="{{ 'record' | prepend: '/browse.html#' | relative_url }}">Records {% include feature/icon.html icon="file-text" %}</a><br>
       {% when 'url' %}
-      <a class="text-dark" href="{{ 'pdf' | prepend: '/browse.html#' | relative_url }}">URLs {% include feature/icon.html icon="link" %}</a><br>
+      <a class="text-dark" href="{{ 'link' | prepend: '/browse.html#' | relative_url }}">URLs {% include feature/icon.html icon="link" %}</a><br>
       {% else %}
-      <a class="text-dark" href="{{ 'pdf' | prepend: '/browse.html#' | relative_url }}">Files {% include feature/icon.html icon="file-earmark" %}</a><br>
+      <a class="text-dark" href="{{ 'file' | prepend: '/browse.html#' | relative_url }}">Files {% include feature/icon.html icon="file-earmark" %}</a><br>
       {%- endcase -%}
       {%- endif -%}
       {%- endfor -%}
