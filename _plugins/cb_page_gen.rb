@@ -20,15 +20,24 @@ module CollectionBuilderPageGenerator
     # main function to read config, data, and generate pages
     def generate(site)
 
-      # Default settings to use if not configured in _config.yml
-      # These are CollectionBuilder specific settings
+      #########
+      #
+      # Default Settings
+      # 
+      # These values are used if not configured in the 'page_gen' object in _config.yml
+      # Defaults follow CollectionBuilder specific conventions.
+      #
       data_file_default = site.config['metadata'] || 'metadata' # _data to use
-      template_default = 'item' # _layout to use for pages
+      template_default = 'item' # layout to use for all pages by default
+      object_template_default = 'object_template' # metadata column to use to assign layout
       name_default = 'objectid' # value to use for filename
       dir_default = 'items' # where to output pages
       extension_default = 'html' # extension, usually html
       filter_default = nil # value to filter records on, off by default
-      
+      filter_condition_default = nil # expression to filter records on, off by default
+      #
+      ######
+
       # get optional configuration from _config.yml, or create a single default one from CB metadata setting
       configure_gen = site.config['page_gen'] || [{ 'data' => data_file_default }]
       
@@ -37,16 +46,12 @@ module CollectionBuilderPageGenerator
       configure_gen.each do |data_config|
         data_file = data_config['data'] || data_file_default
         template = data_config['template'] || template_default
+        object_template = data_config['object_template'] || object_template_default
         name = data_config['name'] || name_default
         dir = data_config['dir'] || dir_default
         extension = data_config['extension'] || extension_default
         filter = data_config['filter'] || filter_default
-
-        # check if layout exists, if not provide error message and skip
-        if !site.layouts.key? template
-          puts "Error cb_page_gen: Could not find layout '#{template}'. Please check configuration or add the layout. Item pages are NOT being generated from '#{data_file}'!"
-          next
-        end
+        filter_condition = data_config['filter_condition'] || filter_condition_default
 
         # check if data file exists, if not provide error message and skip
         if !site.data.key? data_file.split('.')[0]
@@ -65,9 +70,9 @@ module CollectionBuilderPageGenerator
           end
         end
 
-        # Filter records based on condition
+        # Filter records if filter or filter_condition is configured
         records = records.select { |r| r[filter] } if filter
-        records = records.select { |record| eval(data_config['filter_condition']) } if data_config['filter_condition']
+        records = records.select { |record| eval(data_config['filter_condition']) } if filter_condition
 
         # Check for unique names, if not provide error message
         names_test = records.map { |x| x[name] }
@@ -75,17 +80,45 @@ module CollectionBuilderPageGenerator
           puts "Error cb_page_gen: some values in '#{name}' are not unique! This means those pages will overwrite each other, so you will be missing some Item pages. Please check '#{name}' and make them all unique."
         end
 
+        # Check for missing layouts
+        template_test = records.map { |x| x[object_template] ? x[object_template].strip : template }.uniq
+        #puts "#{template_test}"
+        all_layouts = site.layouts.keys
+        missing_layouts = (template_test - all_layouts)
+        if !missing_layouts.empty? # if there is missing layouts
+          if all_layouts.include? template 
+            # if there is a valid default layout fallback, continue
+            puts "Notice cb_page_gen: could not find layout(s) #{missing_layouts.join(', ')} in '_layouts'. Records with these layouts or object_template will fallback to the default layout '#{template}'. If this is unexpected, please add the missing layout(s) or check configuration of 'template' / 'object_template'."
+          else
+            # if there is no valid fallback / template, skip gen
+            puts "Error cb_page_gen: could not find layout(s) #{missing_layouts.join(', ')} in '_layouts'. This includes the default layout '#{template}'. Please add the layout(s) or check configuration of 'template' / 'object_template'. Item pages are NOT being generated from '#{data_file}'!"
+            next
+          end
+        end
+
         # Generate pages for each record
         records.each_with_index do |record, index|
-          if !record[name]
+          # Check for valid name, skip page gen if none
+          #if !object.nil? && !object.empty?
+          if record[name].nil? || record[name].strip.empty?
             puts "Error cb_page_gen: record '#{index}' in '#{data_file}' does not have a value in '#{name}'! This means it won't have a valid filename and will be skipped."
             next
           end
-          # provide index number for page object
+          # Provide index number for page object
           record['index_number'] = index 
-          # add layout value
-          record['layout'] = template
-          # pass the page data to the ItemPage generator
+          # Add layout value from object_template or the default
+          if all_layouts.include? record[object_template]
+            record['layout'] = record[object_template].strip
+          else
+            record['layout'] = template
+          end
+          # Check if layout exists, if not provide error message and skip
+          if !all_layouts.include? record['layout']
+            puts "Error cb_page_gen: Could not find layout '#{record['layout']}'. Please check configuration or add the layout. Item page NOT generated for record '#{index}' in '#{data_file}'!"
+            next
+          end
+
+          # Pass the page data to the ItemPage generator
           site.pages << ItemPage.new(site, record, name, dir, extension)
         end
       end
