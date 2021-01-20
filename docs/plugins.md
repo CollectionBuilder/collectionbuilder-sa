@@ -58,7 +58,7 @@ page_gen:
 Full configuration options:
 
 | option | use | default | notes |
-| --- | --- | --- |
+| --- | --- | --- | -- |
 | data | A file from _data to use to generate pages | `metadata` | A valid data file is required. Plugin warns if there is no match in _data and skips generation. |
 | template | Set the default layout to use for pages from _layouts | `item` | The default layout must exist. Plugin warns if there is no match in _layouts and skips generation. |
 | object_template | Optionally set layout using a value from the individual record data, allowing you to have different layouts for each page. | `object_template` | Record values must match a valid layout. Fallback is to template value. |
@@ -71,6 +71,14 @@ Full configuration options:
 Note: defaults are set for *all* configuration options, so none are technically required when providing a config.
 If none is provided, they will fallback to the default.
 If an option is invalid, the plugin will usually catch it and provide an error message.
+
+Filenames are created from the "name" option, which is a key in the data (i.e. a column in the csv).
+File extension (generally .html) is added during the process.
+The value in "name" is sanitized using the Jekyll filter slugify in "pretty" mode--this will downcase, replace all spaces and invalid url characters with `-`.
+This is important to ensure valid links and filenames across platforms and servers.
+If you are using CB "objectid", your values should already meet these requirements and will not be changed by sanitizing. 
+However, if your objectid contain odd characters (and are thus sanitized), links in the rest of the collection site may not point to the correct url.
+If for some reason you can not clean up your objectid field, you can  apply slugify filter to objectid in other page templates when calculating links to fix the issue.
 
 If customizing new Item types, it maybe helpful to tweak the "Default Settings" values in CollectionBuilderPageGenerator (as an alternative to passing configuration values).
 For example, some CB set ups handle "compound objects" by having records with no objectid value representing child objects--you may want to update to `filter_default = objectid`.
