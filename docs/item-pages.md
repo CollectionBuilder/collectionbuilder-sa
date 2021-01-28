@@ -1,64 +1,54 @@
 # Item pages
 
-CollectionBuilder-SA uses `data_page_generator.rb` plugin to generate individual pages for each item in the collection metadata on the fly.
-Page gen options are configured in `_config.yml`, with the block:
+CollectionBuilder-SA uses "CollectionBuilder Page Generator" plugin to generate individual pages for each record in the collection metadata on the fly.
 
-```
-page_gen:
-  - data: 'demo_psychiana'
-    template: 'item'
-    name: 'objectid'
-    dir: 'items'
-    extension: 'html' 
-    filter: 'objectid'  
-```
+Typical use requires no configuration.
+CB Page Gen will automatically generate pages from the data specified by _config.yml `metadata` (the same as used to populate the rest of the site).
+For more advanced configuration options, including generating other types of pages, see docs/plugins.md.
 
-The values correspond to:
+CB Page Gen passes all metadata fields through to Jekyll as if each was front matter on a normal file so that the values can be used to populate Item page content.
+This page object is passed to the layout matching the `object_template` value, falling back to the default `template` value (normally `item`).
 
-- `data`: the name of the metadata file in `_data`, which should be the same as the value given for `metadata:` in _config.yml just above the page_gen config block.
-- `template`: the name of the layout in `_layouts`, which is normally 'items'. *Note:* the "items" layout has no content, but passes the page information to the "item" layout (see below for more info).
-- `name`: the metadata field used to create the filename, this should be objectid. Keep in mind this means your objectids will be URLs, so should be fully sanitized names with no spaces.
-- `dir`: the directly where you want the pages to be output, i.e. where they will be on the website. CollectionBuilder expects them to be in /items/
-- `extension`: should be html, since we are creating web pages directly using html.
-- `filter`: used to skip rows of the metadata for page generation. Should be 'objectid', meaning if an item in the metadata does not have an objectid it will not become a page. This filter is used in other CollectionBuilder visualizations as well.
+Item pages have a special meta markup in head (_includes/head/item-meta.html) which is configured by "_data/config-metadata.csv" and driven by the metadata fields (see "docs/markup.md").
 
-Page_gen passes all metadata fields through to Jekyll as if each was front matter on a normal file.
-This page object is passed to the specified layout to give it form in a template.
-Because page_gen rewrites the page object front matter, additional front matter added to the layout configured with `template` is lost. 
-To avoid this issue, we use a dummy layout "items" which simply passes everything to the real layout "item" (_layouts/item.html).
+## object_template Layouts 
 
-The item layout uses the properties of the the metadata to create the item page contents, configured by "_data/config-metadata.csv". 
-Item pages have a special meta markup in head (_includes/head/item-meta.html) which is also configured by config-metadata and driven by the metadata fields (see "docs/markup.md").
-The image representations and object downloads logic is based on the `format` field in the metadata--thus will be incorrect if the format field is wrong or malformed.  
+The object_template layouts provide templates for presenting different item types.
+The files are found in "_layouts" (default ones have the front matter `item-meta: true`.
 
-For image items, a zoomable, full screen gallery view is added using [lightGallery](http://sachinchoolur.github.io/lightGallery/).
-The lightGallery dependencies are added by including `gallery: true` in the item layout front matter.
-See docs/lightgallery.md for more details.
+Each object_template layout is typically constructed of modular item page components (found in "_includes/item/") and arranged using Bootstrap.
+This simplifies customization of the different item pages depending on collection needs.
 
-## Metadata display
+Default supported options: `image`,`pdf`, `video`, `audio`, `video-embed`, `record`. 
 
-The metadata fields displayed on an item page are configured by config-metadata. 
+- `image`: Displays image_small if available, with fall back to object_download. Adds LightGallery view to open images full screen using object_download, with fall back to image_small.
+- `pdf`: Displays image_small if available, with fall back to image_thumb, or a pdf icon.
+- `video`: Uses `<video>` element to embed video file from object_download as src.
+- `audio`: Uses `<audio>` element to embed audio file from object_download as src.
+- `video-embed`: default support for YouTube or Vimeo videos.
+- `record`: metadata only record.
+- `item`: generic fallback item page, displays image or icon depending on "image_thumb"
 
-Only fields with a value in the "display_name" column will be displayed, and only if the item has a value for that field. 
-(*Note:* if you want a field to display without a field name visible, enter a blank space in the "display_name" column)
+## Item Page Components
 
-Fields with "true" in the "browse_link" column in config-metadata will generate a link to the Browse page. 
-Values in "browse_link" fields will be split on semicolon `;` as multi-valued fields before adding links.
-These often mirror the "btn" links on the Browse config-browse. 
-Keep in mind that for the browse links to be useful, the field must also be available to filter on the Browse page--so the field should appear in config-browse (displayed, btn, or hidden). 
+Components intended for use in Item page layouts can be found in "_includes/item".
+The can be included in the layouts following the pattern `{% include item/component-name.html %}`.
 
-## Preferred Citation 
+The components use Liquid to pull metadata into the content elements. 
+Since the metadata is provided with the page object, fields can be accessed following the pattern `{{ page.field_name }}`.
 
-At the bottom of the item page, a "Preferred Citation" is automatically generated using the item title (metadata title), collection (site.title), organization (site.organization-name), and a link to the item page.
-To use a different format, please edit the card in the item layout.
+Below are the default item includes:
 
-## Rights
+### audio-player
 
-At the bottom of the item page a "Rights" box is automatically generated if either "rights" or "rightsstatement" field is in the metadata.
-The layout assumes that "rightsstatement" is a link only, e.g. most likely from rightsstatements.org or Creative Commons, a value such as "http://rightsstatements.org/vocab/NoC-US/1.0/".
-If your collection uses different field names for these values, either modify the field names in the metadata CSV, or edit the Rights box in the item layout. 
+Uses `<audio>` element to embed audio file from object_download as src.
 
-## Browse buttons
+### breadcrumbs
+
+Adds Bootstrap styled breadcrumbs to page.
+By default the crumbs are: Home (index.html) / Items (browse.html) / current page title (from the metadata, truncated to 10 words max).
+
+### browse-buttons
 
 Item pages can have browsing buttons linking to previous/next item page. 
 This option is turned off or on in _data/theme.yml:
@@ -70,4 +60,52 @@ browse-buttons: true
 
 Generating browse buttons adds some time to builds, so can be turned off to save time during development, or if browse doesn't make sense for the collection content.
 The item order follows the order in the metadata CSV, so pre-sort the CSV to the desired order.
-The logic for calculating the previous/next item requires CollectionBuilder's modified version of page_gen which provides an index_number to the page object that can be used by Liquid.
+
+Requires cb_page_gen plugin, which provides values for `page.previous_item` and `page.next_item`.
+
+### citation-box
+
+Add a "Preferred Citation" automatically generated using the item title (metadata title), collection (site.title), organization (site.organization-name), and a link to the item page.
+The include can be edited to change the format or fields as necessary.
+
+### download-buttons
+
+Add download button with text based on format field.
+Plus add hash link to Timeline if there is a date, and hash link to Map if there is latitude and longitude.
+
+### image-gallery
+
+For image items, a zoomable, full screen gallery view is added using [lightGallery](http://sachinchoolur.github.io/lightGallery/).
+Ensure dependencies are added by including `gallery: true` in the layout front matter.
+See docs/lightgallery.md for more details.
+
+### item-thumb
+
+### metadata 
+
+The metadata fields displayed on an item page are configured by config-metadata. 
+
+Only fields with a value in the "display_name" column will be displayed, and only if the item has a value for that field. 
+(*Note:* if you want a field to display without a field name visible, enter a blank space in the "display_name" column)
+
+Fields with "true" in the "browse_link" column in config-metadata will generate a link to the Browse page. 
+Values in "browse_link" fields will be split on semicolon `;` as multi-valued fields before adding links.
+These often mirror the "btn" links on the Browse config-browse. 
+Keep in mind that for the browse links to be useful, the field must also be available to filter on the Browse page--so the field should appear in config-browse (displayed, btn, or hidden). 
+
+### rights-box
+
+At the bottom of the item page a "Rights" box is automatically generated if either "rights" or "rightsstatement" field is in the metadata.
+The layout assumes that "rightsstatement" is a link only, e.g. most likely from rightsstatements.org or Creative Commons, a value such as "http://rightsstatements.org/vocab/NoC-US/1.0/".
+If your collection uses different field names for these values, either modify the field names in the metadata CSV, or edit the Rights box in the item layout. 
+
+### video-embed
+
+For items that are YouTube videos, please fill in the object_download field with the YouTube share link `https://youtu.be/dbKNr3wuiuQ` or watch link `https://www.youtube.com/watch?v=dbKNr3wuiuQ`.
+Please ensure the youtubeid is the end of URL (e.g. `dbKNr3wuiuQ`, and does *not* end with other query strings such as `?t=51` or `&feature=youtu.be`). 
+
+The template will parse the object_download link to find the youtubeid and set up a iframe embed using the modest branding and privacy options. 
+
+### video-player
+
+Uses `<video>` element to embed video file from object_download as src.

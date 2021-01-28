@@ -9,7 +9,7 @@ See general documentation: https://collectionbuilder.github.io/docs/metadata.htm
 
 ## Object Download and Display images
 
-- `object_download`: a full URL to download the digital object or relative path if items are contained with in the project.
+- `object_download`: a full URL to download the full quality digital object or relative path if items are contained with in the project.
 - `image_small`: a full URL to a small image representation of the object or relative path if items are contained with in the project.
 - `image_thumb`: a full URL to a thumb image representation of the object or relative path if items are contained with in the project.
 - `format`: object's MIME media type. If an object does not have an image_small or image_thumb, format is used by template logic to switch between different icons.
@@ -31,37 +31,4 @@ Do not include the `baseurl` value that you set in "_config.yml", since this wil
 
 ## Object Template
 
-- `object_template`: a template type used in logic to set up different Item page features. If blank the object will default to a generic item page. Default supported options: `image`,`pdf`, `video`, `audio`, `youtube-embed`. See below for details.
-
-### image template 
-
-Displays image_small if available, with fall back to object_download. 
-Adds LightGallery view to open images full screen using object_download, with fall back to image_small.
-
-### pdf template
-
-Displays image_small if available, with fall back to image_thumb, or a pdf icon.
-
-### video template
-
-Uses `<video>` element to embed video file from object_download as src.
-
-### audio template
-
-Uses `<audio>` element to embed audio file from object_download as src. 
-
-### youtube-embed template
-
-For items that are YouTube videos, please fill in the object_download field with the YouTube share link `https://youtu.be/dbKNr3wuiuQ` or watch link `https://www.youtube.com/watch?v=dbKNr3wuiuQ`.
-Please ensure the youtubeid is the end of URL (e.g. `dbKNr3wuiuQ`, and does *not* end with other query strings such as `?t=51` or `&feature=youtu.be`). 
-
-The template will parse the object_download link to find the youtubeid and set up a iframe embed using the modest branding and privacy options. 
-
-### record template
-
-For items that are metadata only records.
-
-### compound-image template
-
-Looks for multiple image src separated by `;` in image_small and object_download.
-Displays all images listed in the fields.
+- `object_template`: a template type used in logic to set up different Item page features. If blank the object will default to a generic item page. Default supported options: `image`,`pdf`, `video`, `audio`, `youtube-embed`. See docs/item-pages.md for details.
