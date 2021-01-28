@@ -71,6 +71,8 @@ Full configuration options:
 Note: defaults are set for *all* configuration options, so none are technically required when providing a config.
 If none is provided, they will fallback to the default.
 If an option is invalid, the plugin will usually catch it and provide an error message.
+Configuration issues and metadata errors will not interrupt normal Jekyll build process, however your site may not have item pages generated.
+Please check the terminal for notices and errors from cb_page_gen.
 
 Filenames are created from the "name" option, which is a key in the data (i.e. a column in the csv).
 File extension (generally .html) is added during the process.
