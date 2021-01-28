@@ -1,0 +1,10 @@
+{% comment %}
+    an item layout calling the gallery-image include requires frontmatter option: 
+    gallery: true
+{% endcomment %}
+<div id="lightgallery">
+    <div class="gallery-img" data-src="{{ page.object_download | relative_url }}">
+        <p><img src="{{ page.image_small | relative_url }}" alt="item thumbnail for {{ page.title | escape }}" class="img-fluid"></p>
+        <p><small>Click to view full screen</small></p>
+    </div>
+</div>
