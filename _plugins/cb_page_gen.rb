@@ -40,7 +40,7 @@ module CollectionBuilderPageGenerator
 
       # get optional configuration from _config.yml, or create a single default one from CB metadata setting
       configure_gen = site.config['page_gen'] || [{ 'data' => data_file_default }]
-      
+
       # iterate over each instance in configuration
       # this allows to generate from multiple _data sources
       configure_gen.each do |data_config|
@@ -55,7 +55,7 @@ module CollectionBuilderPageGenerator
 
         # check if data file exists, if not provide error message and skip
         if !site.data.key? data_file.split('.')[0]
-          puts "Error cb_page_gen: Data value '#{data_file}' does not match any site data. Please check _config.yml 'metadata' or page_gen 'data' value. Common issues are spelling error or including an extension such as .csv (no extension should be used!). Item pages are NOT being generated from '#{data_file}'!"
+          puts color_text("Error cb_page_gen: Data value '#{data_file}' does not match any site data. Please check _config.yml 'metadata' or page_gen 'data' value. Common issues are spelling error or including an extension such as .csv (no extension should be used!). Item pages are NOT being generated from '#{data_file}'!", :red)
           next
         end
 
@@ -77,7 +77,7 @@ module CollectionBuilderPageGenerator
         # Check for unique names, if not provide error message
         names_test = records.map { |x| x[name] }
         if names_test.size != names_test.uniq.size 
-          puts "Error cb_page_gen: some values in '#{name}' are not unique! This means those pages will overwrite each other, so you will be missing some Item pages. Please check '#{name}' and make them all unique."
+          puts color_text("Error cb_page_gen: some values in '#{name}' are not unique! This means those pages will overwrite each other, so you will be missing some Item pages. Please check '#{name}' and make them all unique.", :red) 
         end
 
         # Check for missing layouts
@@ -88,10 +88,10 @@ module CollectionBuilderPageGenerator
         if !missing_layouts.empty? # if there is missing layouts
           if all_layouts.include? template 
             # if there is a valid default layout fallback, continue
-            puts "Notice cb_page_gen: could not find layout(s) #{missing_layouts.join(', ')} in '_layouts'. Records with these layouts or object_template will fallback to the default layout '#{template}'. If this is unexpected, please add the missing layout(s) or check configuration of 'template' / 'object_template'."
+            puts color_text("Notice cb_page_gen: could not find layout(s) #{missing_layouts.join(', ')} in '_layouts'. Records with these layouts or object_template will fallback to the default layout '#{template}'. If this is unexpected, please add the missing layout(s) or check configuration of 'template' / 'object_template'.", :yellow)
           else
             # if there is no valid fallback / template, skip gen
-            puts "Error cb_page_gen: could not find layout(s) #{missing_layouts.join(', ')} in '_layouts'. This includes the default layout '#{template}'. Please add the layout(s) or check configuration of 'template' / 'object_template'. Item pages are NOT being generated from '#{data_file}'!"
+            puts color_text("Error cb_page_gen: could not find layout(s) #{missing_layouts.join(', ')} in '_layouts'. This includes the default layout '#{template}'. Please add the layout(s) or check configuration of 'template' / 'object_template'. Item pages are NOT being generated from '#{data_file}'!", :red)
             next
           end
         end
@@ -101,7 +101,7 @@ module CollectionBuilderPageGenerator
           # Check for valid name, skip page gen if none
           #if !object.nil? && !object.empty?
           if record[name].nil? || record[name].strip.empty?
-            puts "Error cb_page_gen: record '#{index}' in '#{data_file}' does not have a value in '#{name}'! This means it won't have a valid filename and will be skipped."
+            puts color_text("Notice cb_page_gen: record '#{index}' in '#{data_file}' does not have a value in '#{name}'! This record will be skipped.", :yellow)
             next
           end
           # Provide index number for page object
@@ -114,7 +114,7 @@ module CollectionBuilderPageGenerator
           end
           # Check if layout exists, if not provide error message and skip
           if !all_layouts.include? record['layout']
-            puts "Error cb_page_gen: Could not find layout '#{record['layout']}'. Please check configuration or add the layout. Item page NOT generated for record '#{index}' in '#{data_file}'!"
+            puts color_text("Error cb_page_gen: Could not find layout '#{record['layout']}'. Please check configuration or add the layout. Item page NOT generated for record '#{index}' in '#{data_file}'!", :red)
             next
           end
 
@@ -123,6 +123,20 @@ module CollectionBuilderPageGenerator
         end
       end
     end
+
+    # Color helper, to add warning colors to message outputs
+    # use like: puts colorize("example", :red)
+    def text_colors
+      @colors = {
+        red: 31,
+        yellow: 33,
+        green: 32
+      }
+    end
+    def color_text(str, color_code)
+      "\e[#{text_colors[color_code]}m#{str}\e[0m"
+    end
+
   end
 
   # Subclass of `Jekyll::Page` with custom method definitions.
