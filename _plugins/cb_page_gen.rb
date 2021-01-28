@@ -16,6 +16,8 @@
 module CollectionBuilderPageGenerator
   class ItemPageGenerator < Jekyll::Generator
     safe true
+    # include jekyll utils so can use slugify
+    include Jekyll::Utils
 
     # main function to read config, data, and generate pages
     def generate(site)
@@ -104,8 +106,29 @@ module CollectionBuilderPageGenerator
             puts color_text("Notice cb_page_gen: record '#{index}' in '#{data_file}' does not have a value in '#{name}'! This record will be skipped.", :yellow)
             next
           end
+
+          # create clean filename with Jekyll Slugify pretty mode
+          # this ensures safe filenames, but may cause unintended issues with links if objectid are not well formed
+          record['base_filename'] = slugify(record[name], mode: "pretty").to_s
+
           # Provide index number for page object
           record['index_number'] = index 
+          
+          # Find next item 
+          if index == records.size - 1
+            next_item = records[0][name]
+          else
+            next_item = records[index + 1][name]
+          end
+          record['next_item'] = "/" + dir + "/" + slugify(next_item, mode: "pretty").to_s + "." + extension.to_s
+          # Find previous item
+          if index == 0
+            previous_item = records[records.size - 1][name]
+          else
+            previous_item = records[index -1][name]
+          end
+          record['previous_item'] = "/" + dir + "/" + slugify(previous_item, mode: "pretty").to_s + "." + extension.to_s
+          
           # Add layout value from object_template or the default
           if all_layouts.include? record[object_template]
             record['layout'] = record[object_template].strip
@@ -119,7 +142,7 @@ module CollectionBuilderPageGenerator
           end
 
           # Pass the page data to the ItemPage generator
-          site.pages << ItemPage.new(site, record, name, dir, extension)
+          site.pages << ItemPage.new(site, record, dir, extension)
         end
       end
     end
@@ -141,21 +164,16 @@ module CollectionBuilderPageGenerator
 
   # Subclass of `Jekyll::Page` with custom method definitions.
   class ItemPage < Jekyll::Page
-    # include jekyll utils so can use slugify
-    include Jekyll::Utils
 
     # function to generate each individual page
-    def initialize(site, record, name, dir, extension)
+    def initialize(site, record, dir, extension)
       @site = site             # the current site instance.
       @base = site.source      # path to the source directory.
       @dir  = dir         # the directory the page will output in
       
-      # clean filename with Jekyll Slugify pretty mode
-      # this ensures clean filenames, but may cause unintended issues with links if objectid are not well formed
-      filename = slugify(record[name], mode: "pretty").to_s
-      @basename = filename     # filename without the extension.
-      @ext      = "." + extension.to_s      # the extension.
-      @name     = filename + "." + extension.to_s # @basename + @ext.
+      @basename = record['base_filename']  # filename without the extension.
+      @ext      = "." + extension.to_s  # the extension.
+      @name     = record['base_filename'] + "." + extension.to_s # @basename + @ext.
 
       # add record data to the page
       # all record data will be available in page object
