@@ -14,7 +14,7 @@ Item pages have a special meta markup in head (_includes/head/item-meta.html) wh
 ## object_template Layouts 
 
 The object_template layouts provide templates for presenting different item types.
-The files are found in "_layouts" (default ones have the front matter `item-meta: true`.
+The files are found in "_layouts" (default item layouts have the front matter `item-meta: true`, which adds meta markup).
 
 Each object_template layout is typically constructed of modular item page components (found in "_includes/item/") and arranged using Bootstrap.
 This simplifies customization of the different item pages depending on collection needs.
@@ -103,10 +103,15 @@ If your collection uses different field names for these values, either modify th
 
 ### video-embed
 
-For items that are YouTube videos, please fill in the object_download field with the YouTube share link `https://youtu.be/dbKNr3wuiuQ` or watch link `https://www.youtube.com/watch?v=dbKNr3wuiuQ`.
-Please ensure the youtubeid is the end of URL (e.g. `dbKNr3wuiuQ`, and does *not* end with other query strings such as `?t=51` or `&feature=youtu.be`). 
+Adds an iframe embed for YouTube or Vimeo videos given a link in object_download.
+For items without a YouTube or Vimeo link, falls back to an thumb/icon and link.
 
-The template will parse the object_download link to find the youtubeid and set up a iframe embed using the modest branding and privacy options. 
+For items that are YouTube videos, please fill in the object_download field with the YouTube share link or watch link (e.g. `https://youtu.be/dbKNr3wuiuQ` or `https://www.youtube.com/watch?v=dbKNr3wuiuQ`).
+In most cases you will want to ensure the youtubeid is the end of URL (e.g. `dbKNr3wuiuQ`, and does *not* end with other query strings such as `?t=51` or `&feature=youtu.be`). 
+The template will parse the object_download link to find the youtube id and set up a iframe embed using the modest branding and privacy options. 
+
+For items that are Vimeo videos, please fill in the object_download field with the full Vimeo link, e.g. `https://vimeo.com/330826859`.
+The template will parse the object_download link to find the vimeo id and set up a iframe embed using the modest branding and privacy options. 
 
 ### video-player
 
