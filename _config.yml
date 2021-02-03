@@ -37,9 +37,6 @@ organization-logo-nav: https://www.lib.uidaho.edu/media/digital/bannerlogo_allwh
 ##########
 # COLLECTION SETTINGS
 #
-# provide location of the digital objects folder,
-# If using local folder, dir name with proceeding slash. If using external web location, provide full URL
-objects: /objects 
 # choose metadata: this is the name of the csv file in your _data directory that describes the objects in your collection
 metadata: demo-metadata
 # page generation settings [optional!]
