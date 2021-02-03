@@ -1,7 +1,9 @@
 {% comment %}
+
     Requires cb_page_gen plugin.
     The item order follows the order in the metadata CSV, so pre-sort the CSV to the desired order.
-{% endcomment %}
+
+{%- endcomment -%}
 <div class="text-center">
     <a class="btn btn-secondary" href="{{ page.previous_item | relative_url }}" id="prev-page-button">&laquo; Previous</a>
     <a class="btn btn-secondary" href="{{ '/browse.html' | relative_url }}" >Back to Browse</a>

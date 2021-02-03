@@ -58,7 +58,7 @@ This option is turned off or on in _data/theme.yml:
 browse-buttons: true 
 ```
 
-Generating browse buttons adds some time to builds, so can be turned off to save time during development, or if browse doesn't make sense for the collection content.
+Generating browse buttons adds some time to builds on very large collections, so can be turned off to save time during development, or if browse doesn't make sense for the collection content.
 The item order follows the order in the metadata CSV, so pre-sort the CSV to the desired order.
 
 Requires cb_page_gen plugin, which provides values for `page.previous_item` and `page.next_item`.
@@ -80,6 +80,8 @@ Ensure dependencies are added by including `gallery: true` in the layout front m
 See docs/lightgallery.md for more details.
 
 ### item-thumb
+
+Add a thumbnail image or icon based on format for an item, with a object_download link (if available).
 
 ### metadata 
 
