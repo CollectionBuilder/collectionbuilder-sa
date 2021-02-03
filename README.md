@@ -1,5 +1,9 @@
 # CollectionBuilder-SA 
 
+> **Note:** CollectionBuilder-SA is under active development in the "csv-style" branch including major changes!
+> The "docs" folder in the branch includes up-to-date documentation.
+> The current "master" branch of this repository may not have latest updates and bug fixes.
+
 CollectionBuilder-SA ("Stand Alone") is a template for creating digital collection and exhibit websites using Jekyll, given:
 
 - a CSV of collection metadata
