@@ -1,13 +1,13 @@
 # YouTube
 
-Items in a collection that are hosted on YouTube must have a column `youtubeid`.
-CollectionBuilder uses logic based on `youtubeid` to use the YouTube API to retrieve images and create video embeds (rather than CONTENTdm).
-If a `youtubeid` is present, it will treat the object as a YouTube video.
+YouTube items are supported in Item pages via the `video-embed` "object_template". 
+Provide the full YouTube video link in "object_download" field. 
+Use the API recipes below to fill in the "image_small" and "image_thumb" fields if desired.
 
 ## Item page
 
-An item page for an object with `youtubeid` will display the video embedded in an [YouTube Player iframe](https://developers.google.com/youtube/iframe_api_reference). 
-It is styled using [Bootstrap Embeds utility class](https://getbootstrap.com/docs/4.4/utilities/embed/), set as 16x9 ratio (which is default for YouTube, however, if your videos differ significantly from that ratio try modifying the class in _layouts/item.html).
+The default `video-embed` object_template will display the video embedded in an [YouTube Player iframe](https://developers.google.com/youtube/iframe_api_reference). 
+It is styled using [Bootstrap Embeds utility class](https://getbootstrap.com/docs/4.4/utilities/embed/), set as 16x9 ratio (which is default for YouTube, however, if your videos differ significantly from that ratio try modifying the class in _includes/item/video-embed.html).
 The embed is given these options:
 
 - Privacy-enhanced mode: does not send data to YouTube unless users click play (enabled by using domain `www.youtube-nocookie.com` rather than `www.youtube.com`
@@ -16,14 +16,7 @@ The embed is given these options:
 
 ## Item images 
 
-To retrieve image representations for other pages in CollectionBuilder, objects with `youtubeid` will use the YouTube image API.
-The API is not well documented by Google, but is used by many sites and js libraries.
-
-CollectionBuilder uses these calls, which are built into the image includes:
-youtube-large.html, youtube-small.html, and youtube-thumb.html.
-These do not use SD or max quality versions since those can not be guaranteed for all videos
-(if you know your collection videos are high res, you may want to modify to use those options since all image sizes are relatively small).
-However, these includes are rarely used in the current project, since most calls for YouTube images are via JS.
+The YouTube image API is not well documented by Google, but is used by many sites and js libraries.
 
 Basically, you can get four sizes of the default thumbnail, or four smaller thumbnails from different points in the video.
 You can use the domain "img.youtube.com" or "i3.ytimg.com"
