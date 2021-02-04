@@ -2,7 +2,7 @@
 
 > **Note:** CollectionBuilder-SA is under active development in the "csv-style" branch including major changes!
 > The "docs" folder in the branch includes up-to-date documentation.
-> The current "master" branch of this repository may not have latest updates and bug fixes.
+> The current "main" branch of this repository may not have latest updates and bug fixes.
 
 CollectionBuilder-SA ("Stand Alone") is a template for creating digital collection and exhibit websites using Jekyll, given:
 
@@ -13,7 +13,7 @@ Driven by your collection metadata, the template generates engaging visualizatio
 The resulting static site can be hosted on any basic web server.
 
 CollectionBuilder-SA requires that you generate a thumb and small image derivative/representation for each object in your collection, in additional to the full sized object.
-This can be automated using the [included rake tasks](https://github.com/CollectionBuilder/collectionbuilder-sa/blob/master/docs/rake-tasks.md) or manually created using other software.
+This can be automated using the [included rake tasks](https://github.com/CollectionBuilder/collectionbuilder-sa/blob/main/docs/rake-tasks.md) or manually created using other software.
 
 *Note:* CollectionBuilder-SA collections are scalable to thousands of items, with the only limitation being the final file size of the Lunr static search index.
 The search page for collections with extensive text metadata and thousands of items will load slowly.
@@ -40,5 +40,5 @@ Questions can be directed to **libstatic.uidaho@gmail.com**
 
 CollectionBuilder documentation and general web content is licensed [Creative Commons Attribution-ShareAlike 4.0 International](http://creativecommons.org/licenses/by-sa/4.0/). 
 This license does *NOT* include any objects or images used in digital collections, which may have individually applied licenses described by a "rights" field.
-CollectionBuilder code is licensed [MIT](https://github.com/CollectionBuilder/collectionbuilder-sa/blob/master/LICENSE). 
+CollectionBuilder code is licensed [MIT](https://github.com/CollectionBuilder/collectionbuilder-sa/blob/main/LICENSE). 
 This license does not include external dependencies included in the `assets/lib` directory, which are covered by their individual licenses.
