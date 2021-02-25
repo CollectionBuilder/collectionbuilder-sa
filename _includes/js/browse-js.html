@@ -9,8 +9,8 @@ function makeCard(obj) {
     var itemHref = "{{ '/items/' | relative_url }}" + obj.id + ".html";
     // find images
     var imgSrc, thumbSrc;
+    // if there is a thumb in the csv display it
     if(obj.img) {
-        // if there is a thumb in the csv display it
         imgSrc = obj.img;
     // else add a placeholder based on format
     } else if (obj.format.includes("image")) {
@@ -25,7 +25,7 @@ function makeCard(obj) {
         thumbSrc = '<svg class="bi text-body" fill="currentColor"><use xlink:href="{{ "/assets/lib/bootstrap-icons.svg" | relative_url }}#{{ site.data.theme.icon-default | default: "file-earmark" }}"/></svg><span class="sr-only">File Icon</span>';
     }
     // start card
-    var card = '<div class="item col-lg-4 col-md-6 col-sm-12 mb-2"><div class="card">';
+    var card = '<div class="item col-lg-4 col-md-6 mb-2"><div class="card">';
     // top image for photos
     if(imgSrc) {
         card += '<a href="' + itemHref + '"> <img class="card-img-top lazyload" src="' + placeholder + '" data-src="' + imgSrc + '" alt="Image of ' + obj.title + '"></a>';
