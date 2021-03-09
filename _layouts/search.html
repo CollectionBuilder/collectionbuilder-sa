@@ -1,7 +1,7 @@
 ---
 layout: page 
 ---
-
+{%- assign fields = site.data.config-search | where: 'index',true | map: 'field' -%}
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-sm btn-outline-info float-right" data-toggle="modal" data-target="#operators">Search Options</button>
 <!-- Modal -->
@@ -9,15 +9,16 @@ layout: page
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalLabel">Lunr Search Operators</h5>
+                <h5 class="modal-title" id="modalLabel">Lunr Search Options</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
+                <p>These advanced options can be added to your query in the search box to refine your results:</p> 
                 <ul>
-                    <li>Specific fields (e.g. title:foo, date:1911, subject:tree)</li>
-                    <li>Wildcards (e.g. foo*, *oo)</li>
-                    <li>Fuzzy match, helps with misspelling (e.g. foo~1)</li>
-                    <li>Boost term (e.g. foo^10)</li>
+                    <li>Search a specific field: use the field name, colon, then your query, e.g. <code>title:foo</code>, <code>date:1911</code>, <code>subject:tree</code>. In this collection you can use {{ fields | join: ", " }}.</li>
+                    <li>Wildcards: add <code>*</code> to match any character(s), e.g. <code>foo*</code>, <code>*oo</code>. This is helpful for using a root to find words with all related endings.</li>
+                    <li>Fuzzy match: add <code>~</code> plus a number at the end of your query to specify a higher level of fuzziness in search, e.g. <code>foo~1</code>. This can help with misspellings.</li>
+                    <li>Boost term: add <code>^</code> plus a number to boost the relevance of a term in your query, e.g. <code>foo^10</code>. This can help reduce clutter of unrelated results if one of your terms is most important.</li>
                 </ul>
             </div>
         </div>
