@@ -3,7 +3,7 @@ layout: page
 ---
 
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#operators">Search Operators!</button>
+<button type="button" class="btn btn-sm btn-outline-info float-right" data-toggle="modal" data-target="#operators">Search Options</button>
 <!-- Modal -->
 <div class="modal fade" id="operators" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -26,8 +26,18 @@ layout: page
 
 {{ content }}
 
-<div class="ml-3">
-    <input type="text" id="lunrSearch" class="form-control" placeholder="Enter your search term...">
+<div class="ml-3 mt-3">
+    <form class="" role="search" id="lunrSearch" onsubmit="lunr_search(); return false;">
+        <div class="input-group input-group-lg">
+            <input id="lunrSearchBox" class="form-control " type="text" placeholder="Enter your search term..." >
+            <div class="input-group-append">
+                <button class="btn btn-success" type="submit">
+                    Search
+                </button>
+            </div>
+        </div>
+    </form>
+    
     <table id="lunrResults" class="table table-responsive"></table>
 </div>
 

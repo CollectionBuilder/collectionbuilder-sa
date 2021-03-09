@@ -25,7 +25,7 @@ var idx = lunr(function () {
 /* search function */
 function lunr_search () {
   var resultdiv = $('#lunrResults');
-  var query = $('#lunrSearch').val();//.toLowerCase();
+  var query = $('#lunrSearchBox').val();//.toLowerCase();
   /* basic search that supports operators */
   var result = idx.search(query); 
   /* more fuzzy search, but doesn't support operators:
@@ -63,10 +63,9 @@ function lunr_search () {
 }
 /* init search box and get query string */
 $(document).ready(function() {
-  $('input#lunrSearch').on('keyup', lunr_search );
   if (window.location.search) {
     var queryString = decodeURIComponent(window.location.search.substring(1).split("=")[1]);
-    $('input#lunrSearch').val(queryString);
+    $('input#lunrSearchBox').val(queryString);
     lunr_search ();
   }
 });
