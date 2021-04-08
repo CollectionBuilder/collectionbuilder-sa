@@ -5,4 +5,4 @@ layout: default
 {{ content }}
 </div>
 
-{% unless page.credits == false %}{% include credits.html %}{% endunless %}
+{% if page.credits == true %}{% include credits.html %}{% endif %}
