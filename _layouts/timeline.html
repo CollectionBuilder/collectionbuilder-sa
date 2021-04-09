@@ -34,8 +34,7 @@ layout: page
             <h3>{{ year }}</h3>
         </th>
         <td>
-            {%- assign inYear = items | where_exp: 'item', 'item.date contains year' -%}
-            {% for item in inYear %}<div class="row">
+            <div class="row">
                 {%- assign inYear = items | where_exp: 'item', 'item.date contains year' -%}
                 {% for item in inYear %}
                 <div class="col-lg-4 col-md-6">
@@ -55,7 +54,7 @@ layout: page
                     </a>
                 </div>
                 {% endfor %}
-            {% endfor %}
+            </div>
         </td>
     </tr>
     {% endfor %}
