@@ -83,7 +83,7 @@ However, if your objectid contain odd characters (and are thus sanitized), links
 If for some reason you can not clean up your objectid field, you can  apply slugify filter to objectid in other page templates when calculating links to fix the issue.
 
 If customizing new Item types, it maybe helpful to tweak the "Default Settings" values in CollectionBuilderPageGenerator (as an alternative to passing configuration values).
-For example, some CB set ups handle "compound objects" by having records with no objectid value representing child objects--you may want to update to `filter_default = objectid`.
+For example, some CB set ups handle "compound objects" by having records with no objectid value representing child objects--you may want to update to `filter_default = "objectid"`.
 
 *Note:* CollectionBuilder originally used a modified version of [Adolfo Villafiorita jekyll-datapage_gen](https://github.com/avillafiorita/jekyll-datapage_gen), however, the plugin has been completely rewritten following the basic [Jekyll Generator Plugins](https://jekyllrb.com/docs/plugins/generators/).
 This allows CB Page Gen to more closely follow CB conventions, configuration options, and needs.
