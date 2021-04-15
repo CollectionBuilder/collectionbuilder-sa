@@ -35,7 +35,7 @@ module CollectionBuilderPageGenerator
       name_default = 'objectid' # value to use for filename
       dir_default = 'items' # where to output pages
       extension_default = 'html' # extension, usually html
-      filter_default = nil # value to filter records on, off by default
+      filter_default = 'objectid' # value to filter records on, off by default
       filter_condition_default = nil # expression to filter records on, off by default
       #
       ######
