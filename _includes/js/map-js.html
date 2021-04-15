@@ -1,5 +1,5 @@
-{%- assign items = site.data[site.metadata] | where_exp: 'item','item.latitude != nil and item.longitude != nil' -%}
-{%- assign items = items | where_exp: 'item','item.objectid' -%}
+{%- assign items_w_objectid = site.data[site.metadata] | where_exp: 'i','i.objectid' -%}
+{%- assign items = items_w_objectid | where_exp: 'item','item.latitude != nil and item.longitude != nil' -%}
 {%- assign fields = site.data.config-map -%}
 <!-- load leaflet dependencies -->
 <script src="{{ '/assets/lib/leaflet/leaflet.js' | relative_url }}"></script>
