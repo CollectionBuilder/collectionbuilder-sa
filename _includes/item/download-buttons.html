@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-12 col-md-4 my-2 justify-content-center">
-        <a target="_blank" rel="noopener" href="{{ page.object_download | relative_url }}" class="btn btn-outline-info">Download {{ page.format | split: '/' | last | upcase }}</a>
+        {% if page.object_download %} <a target="_blank" rel="noopener" href="{{ page.object_download | relative_url }}" class="btn btn-outline-info">Download {{ page.format | split: '/' | last | upcase }}</a> {% elsif page.format contains "record" %}<small class="text-muted">Record Only</small>{% endif %}
     </div>
     {% if page.date %}{%- capture year -%}{% if page.date contains "-" %}{{ page.date | split: "-" | first }}{% elsif page.date contains "/" %}{{ page.date | split: "/" | last }}{% else %}{{ page.date }}{% endif %}{%- endcapture -%}
     <div class="col-12 col-md-4 my-2 justify-content-center"><a href="{{ year | strip | prepend: '/timeline.html#' | relative_url }}" class="btn btn-outline-info">View on Timeline</a></div>{% endif %}

@@ -7,9 +7,7 @@
                 Download
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a target="_blank" rel="noopener" href="{{ page.object_download | relative_url }}"
-                    class="dropdown-item">"{{page.title}}" ({{ page.format | split: '/' | last | upcase }})
-                </a>
+                {% if page.object_download %}<a target="_blank" rel="noopener" href="{{ page.object_download | relative_url }}" class="dropdown-item">"{{page.title}}" ({{ page.format | split: '/' | last | upcase }}) </a>{% endif %}
                 {% for child in children %}
                 {% unless child.object_download == nil %}
                 <a target="_blank" rel="noopener" href="{{ child.object_download | relative_url }}"
