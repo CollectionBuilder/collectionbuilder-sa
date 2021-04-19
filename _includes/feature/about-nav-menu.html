@@ -1,0 +1,20 @@
+{% comment %}
+
+    About Page Nav Menu include,
+    add a basic nav at top of About page.
+
+    E.G. --> {% include feature/nav-menu.html sections="Background;Timeline;More Information" %}
+
+    Options: 
+    - "sections" = headers to be added to the nav separated by semicolon (;), exactly copy text from any header written in markdown on the page (i.e. ## Example header)
+
+{%- endcomment -%}
+{% if page.sections%}
+{% assign sections = page.sections | split: ';'%}
+<div class="about-nav sticky-top" >
+    <div class="bg-light m-4 shadow-sm h6 py-3 px-4 border" style="line-height: 1.5em; list-style: none;">
+        <h4>Contents</h4>
+    {% for section in sections %}<p class="my-2"><a class="text-dark" href="#{{ section | slugify }}">{{ section }}</a></p>{% endfor %}<p class="my-2"><a class="text-dark" href="#technical">Tech</a></p>
+    </div>
+</div>
+{% endif %}
