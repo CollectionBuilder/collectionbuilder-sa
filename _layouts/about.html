@@ -2,7 +2,19 @@
 layout: default
 ---
 <div class="container mt-4 about-contents">
-{{ content }}
+    <div class="row">
+        <div class="col-12">
+            {% if site.data.theme.about-featured-image %}
+            {% include feature/jumbotron.html %} {% endif %}
+        </div>
+        <div class="col-md-8 col-12 pr-5">
+            {{ content }}
+        </div>
+        <div class="col-md-4 d-none d-md-block">
+            {% include feature/about-nav-menu.html %}
+        </div>
+    </div>
+
 </div>
 
 {% if page.credits == true %}{% include credits.html %}{% endif %}

@@ -6,11 +6,8 @@ permalink: /about.html
 credits: true
 # Edit the markdown on in this file to describe your collection
 # Look in _includes/feature for options to easily add features to the page
+sections: "About CollectionBuilder SA the best thing ever;Test;Test2;Test3;About the About Page"
 ---
-
-{% include feature/jumbotron.html %} 
-
-{% include feature/nav-menu.html sections="About CollectionBuilder SA;About the About Page" %}
 
 ## About CollectionBuilder SA
 
@@ -30,6 +27,53 @@ See [Getting Started Docs](https://collectionbuilder.github.io/docs/introduction
 
 {% include feature/item-figure.html objectid="demo_001" width="75" %} 
 
+## Test
+
+Driven by your collection metadata, the template generates engaging visualizations to browse and explore your objects.
+The resulting static site can be hosted on any basic web server.Driven by your collection metadata, the template generates engaging visualizations to browse and explore your objects.
+The resulting static site can be hosted on any basic web server.Driven by your collection metadata, the template generates engaging visualizations to browse and explore your objects.
+The resulting static site can be hosted on any basic web server.Driven by your collection metadata, the template generates engaging visualizations to browse and explore your objects.
+The resulting static site can be hosted on any basic web server.Driven by your collection metadata, the template generates engaging visualizations to browse and explore your objects.
+The resulting static site can be hosted on any basic web server.Driven by your collection metadata, the template generates engaging visualizations to browse and explore your objects.
+The resulting static site can be hosted on any basic web server.
+
+Driven by your collection metadata, the template generates engaging visualizations to browse and explore your objects.
+The resulting static site can be hosted on any basic web server.
+Driven by your collection metadata, the template generates engaging visualizations to browse and explore your objects.
+The resulting static site can be hosted on any basic web server.
+
+Driven by your collection metadata, the template generates engaging visualizations to browse and explore your objects.
+The resulting static site can be hosted on any basic web server.
+Driven by your collection metadata, the template generates engaging visualizations to browse and explore your objects.
+The resulting static site can be hosted on any basic web server.
+
+## Test2
+
+Driven by your collection metadata, the template generates engaging visualizations to browse and explore your objects.
+The resulting static site can be hosted on any basic web server.Driven by your collection metadata, the template generates engaging visualizations to browse and explore your objects.
+The resulting static site can be hosted on any basic web server.Driven by your collection metadata, the template generates engaging visualizations to browse and explore your objects.
+The resulting static site can be hosted on any basic web server.Driven by your collection metadata, the template generates engaging visualizations to browse and explore your objects.
+The resulting static site can be hosted on any basic web server.Driven by your collection metadata, the template generates engaging visualizations to browse and explore your objects.
+The resulting static site can be hosted on any basic web server.Driven by your collection metadata, the template generates engaging visualizations to browse and explore your objects.
+The resulting static site can be hosted on any basic web server.
+
+Driven by your collection metadata, the template generates engaging visualizations to browse and explore your objects.
+The resulting static site can be hosted on any basic web server.
+Driven by your collection metadata, the template generates engaging visualizations to browse and explore your objects.
+The resulting static site can be hosted on any basic web server.
+
+Driven by your collection metadata, the template generates engaging visualizations to browse and explore your objects.
+The resulting static site can be hosted on any basic web server.
+Driven by your collection metadata, the template generates engaging visualizations to browse and explore your objects.
+The resulting static site can be hosted on any basic web server.
+
+
+## Test3
+
+Driven by your collection metadata, the template generates engaging visualizations to browse and explore your objects.
+The resulting static site can be hosted on any basic web server.Driven by your collection metadata, the template generates engaging visualizations to browse and explore your objects.
+The resulting static site can be hosted on any basic web server.Driven by your collection metadata, the template generates engaging visualizations to browse and explore your objects.
+The resulting static site can be hosted on any basic web server.Driven by your collection metadata, the template generates en
 
 ## About the About Page
 
