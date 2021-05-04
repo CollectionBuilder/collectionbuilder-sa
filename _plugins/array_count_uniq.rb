@@ -1,6 +1,6 @@
 # use like {{ myarray | array_count_uniq }}
 # where myarray is a liquid array 
-# returns a hash of the unique values + counts
+# returns an array of the unique values + counts
 # evan will 2018 for CollectionBuilder project
 module Jekyll
   module ArrayCountUniq

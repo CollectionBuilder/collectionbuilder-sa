@@ -1,31 +1,13 @@
 # Item pages
 
-CollectionBuilder-SA uses `data_page_generator.rb` plugin to generate individual pages for each item in the collection metadata on the fly.
-Page gen options are configured in `_config.yml`, with the block:
+CollectionBuilder-SA uses "CollectionBuilder Page Generator" plugin to generate individual pages for each record in the collection metadata on the fly.
 
-```
-page_gen:
-  - data: 'demo_psychiana'
-    template: 'item'
-    name: 'objectid'
-    dir: 'items'
-    extension: 'html' 
-    filter: 'objectid'  
-```
+Typical use requires no configuration.
+CB Page Gen will automatically generate pages from the data specified by _config.yml `metadata` (the same as used to populate the rest of the site).
+For more advanced configuration options, including generating other types of pages, see docs/plugins.md.
 
-The values correspond to:
-
-- `data`: the name of the metadata file in `_data`, which should be the same as the value given for `metadata:` in _config.yml just above the page_gen config block.
-- `template`: the name of the layout in `_layouts`, which is normally 'items'. *Note:* the "items" layout has no content, but passes the page information to the "item" layout (see below for more info).
-- `name`: the metadata field used to create the filename, this should be objectid. Keep in mind this means your objectids will be URLs, so should be fully sanitized names with no spaces.
-- `dir`: the directly where you want the pages to be output, i.e. where they will be on the website. CollectionBuilder expects them to be in /items/
-- `extension`: should be html, since we are creating web pages directly using html.
-- `filter`: used to skip rows of the metadata for page generation. Should be 'objectid', meaning if an item in the metadata does not have an objectid it will not become a page. This filter is used in other CollectionBuilder visualizations as well.
-
-Page_gen passes all metadata fields through to Jekyll as if each was front matter on a normal file.
-This page object is passed to the specified layout to give it form in a template.
-Because page_gen rewrites the page object front matter, additional front matter added to the layout configured with `template` is lost. 
-To avoid this issue, we use a dummy layout "items" which simply passes everything to the real layout "item" (_layouts/item.html).
+CB Page Gen passes all metadata fields through to Jekyll as if each was front matter on a normal file so that the values can be used to populate Item page content.
+This page object is passed to the layout matching the `object_template` value, falling back to the default `template` value (normally `item`).
 
 The item layout uses the properties of the the metadata to create the item page contents, configured by "_data/config-metadata.csv". 
 Item pages have a special meta markup in head (_includes/head/item-meta.html) which is also configured by config-metadata and driven by the metadata fields (see "docs/markup.md").
