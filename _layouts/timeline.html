@@ -38,7 +38,7 @@ layout: page
                 {%- assign inYear = items | where_exp: 'item', 'item.date contains year' -%}
                 {% for item in inYear %}
                 <div class="col-lg-4 col-md-6">
-                    <a href="{{ '/items/' | absolute_url | append: item.objectid | append: '.html' }}" >
+                    <a href="{{ '/items/' | relative_url | append: item.objectid | append: '.html' }}" >
                         {% if item.youtubeid %}
                         <img class="lazyload img-thumbnail" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 2'%3E%3C/svg%3E" data-src="{{ 'https://img.youtube.com/vi/' | append: item.youtubeid | append: '/hqdefault.jpg' | relative_url }}" alt="{{ item.title | escape }}" data-toggle="tooltip" data-placement="bottom" title="{{ item.title | escape }} | {{ item.date | escape }}">
                         {% elsif item.format contains 'video' or item.format contains 'audio' %}

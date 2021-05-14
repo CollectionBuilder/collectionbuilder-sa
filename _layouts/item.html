@@ -5,8 +5,8 @@ gallery: true
 {%- assign fields = site.data.config-metadata | where_exp: 'item', 'item.display_name != nil' -%}
 <div class="container py-3">
     <ul class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{{ '/' | absolute_url }}">Home</a></li>
-        <li class="breadcrumb-item"><a href="{{ '/browse.html' | absolute_url }}">Items</a></li>
+        <li class="breadcrumb-item"><a href="{{ '/' | relative_url }}">Home</a></li>
+        <li class="breadcrumb-item"><a href="{{ '/browse.html' | relative_url }}">Items</a></li>
         <li class="breadcrumb-item active">{{ page.title | truncatewords: 10 }}</li>
     </ul>
 

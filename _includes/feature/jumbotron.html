@@ -19,7 +19,7 @@
 {% if include.objectid %}{% assign jumboId = include.objectid %}
 {% elsif site.data.theme.about-featured-image %}{% assign jumboId = site.data.theme.about-featured-image %}
 {% elsif site.data.theme.featured-image %}{% assign jumboId = site.data.theme.featured-image %}
-{% else %}{% assign jumboId = '/assets/img/collectionbuilder-logo.png' | absolute_url %}
+{% else %}{% assign jumboId = '/assets/img/collectionbuilder-logo.png' | relative_url %}
 {%- endif -%}
 
 {% if jumboId contains '/' %}
