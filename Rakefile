@@ -59,8 +59,12 @@ task :generate_derivatives, [:thumbs_size, :small_size, :density, :missing, :im_
   # Ensure that the output directories exist.
   [thumb_image_dir, small_image_dir].each &$ensure_dir_exists
 
+  # support these file types
   EXTNAME_TYPE_MAP = {
+    '.tiff' => :image,
+    '.tif' => :image,  
     '.jpg' => :image,
+    '.png' => :image,
     '.pdf' => :pdf
   }
 
