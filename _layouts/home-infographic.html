@@ -1,7 +1,8 @@
 ---
 layout: page
+custom-foot: js/carousel-js.html
 ---
-{%- assign items = site.data[site.metadata] -%}
+{%- assign items = site.data[site.metadata] | where_exp: 'item','item.objectid' -%}
 <div class="row">
   <div class="col-md-8">
 
