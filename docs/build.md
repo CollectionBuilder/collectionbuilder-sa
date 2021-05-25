@@ -1,6 +1,10 @@
 # Building your collection
 
-When developing the collection use `jekyll s` to start the development server.
+The **first time** you use your project folder on your computer, type the command: `bundle install`.
+
+Bundler will check the project's "Gemfile", install any missing dependencies, and create a "Gemfile.lock" listing the exact Gems set up for this project.
+
+When developing the collection use `bundle exec jekyll s` to start the development server.
 By default the Jekyll environment is "development". 
 In this environment CollectionBuilder skips some template elements to cut down on build time, including these `_includes`:
 
@@ -15,7 +19,7 @@ Ruby provides a development server from that location.
 
 To deploy the collection, you will need to use the Jekyll environment variable "production" and the `build` command rather than serve. 
 This is set by adding the env, `JEKYLL_ENV=production`, in front of the command: 
-`JEKYLL_ENV=production jekyll build`
+`JEKYLL_ENV=production bundle exec jekyll build`
 
 To simplify, this command is added in a [Rake](https://github.com/ruby/rake) task in this repository.
 Typing the command `rake deploy` will set the correct environment and build. 

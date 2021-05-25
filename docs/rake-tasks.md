@@ -9,8 +9,10 @@ This allows you to run `rake` commands inside this repository:
 
 ## deploy
 
-`rake deploy`, runs Jekyll command `JEKYLL_ENV=production jekyll build` which includes analytics and additional machine markup in build. 
+`rake deploy`, runs Jekyll command `JEKYLL_ENV=production bundle exec jekyll build` which includes analytics and additional machine markup in build. 
 Production build will take considerably longer than `jekyll s`. 
+
+If you get an error, ensure that you have used `bundle install` to do initial set up in your repository!
 
 ## generate_derivatives
 
