@@ -19,7 +19,7 @@ The search page for collections with extensive text metadata and thousands of it
 Full document text search is possible, but not generally suggested.
 
 [CollectionBuilder](https://github.com/CollectionBuilder/) is an set of open source tools for creating digital collection and exhibit websites that are driven by metadata and powered by modern static web technology.
-See [Getting Started Docs](https://collectionbuilder.github.io/docs/introduction.html) for detailed information.
+See [CB Docs](https://collectionbuilder.github.io/cb-docs/) for detailed information.
 
 If you are interested in using CollectionBuilder, or are already using it, please drop us a line (**libstatic.uidaho@gmail.com**) since we would love to learn more about its use in the wild. 
 There are also currently opportunities to [collaborate on CollectionBuilder](https://collectionbuilder.github.io/about.html#the-grant).
