@@ -39,9 +39,9 @@ We hope this makes it easier for site builders to develop the collection AND add
 
 #### Include a Card
 
-- Card -- > `{% raw %}{% include feature/card.html header="This is a Card" text="The card features an image from the collection as a cap" objectid="demo004" width="25" centered=true %}{% endraw %}`
+- Card -- > `{% raw %}{% include feature/card.html header="This is a Card" text="The card features an image from the collection as a cap" objectid="demo004" width="25" %}{% endraw %}`
 
-{% include feature/card.html header="This is a Card" text="The card features an image from the collection as a cap" objectid="demo_001" width="25" centered=true %}
+{% include feature/card.html header="This is a Card" text="The card features an image from the collection as a cap" objectid="demo001" width="25" centered=true %}
 
 #### Include a Button 
 
