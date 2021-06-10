@@ -35,7 +35,7 @@
         {% unless include.caption == false %}
         <figcaption class="figure-caption">
             {% if include.caption %}{{ include.caption }}{% else %}
-            <a href="{{ '/item.html?id=' | append: item.objectid | relative_url }}">{{ item.title }}</a>{% endif %}
+            <a href="{{ '/items/' | append: item.objectid | append: '.html' | relative_url }}">{{ item.title }}</a>{% endif %}
         </figcaption>{% endunless %}
     </figure>
 </div>
