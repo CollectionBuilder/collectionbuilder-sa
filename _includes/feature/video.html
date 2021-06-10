@@ -23,6 +23,8 @@
     {% assign vimeo_id = include.objectid | split: '/' | last %}
     {%- elsif include.objectid contains 'youtu' -%}
     {% assign youtube_id = include.objectid | split: '/' | last %}
+    {% if youtube_id contains 'v=' %}{% assign youtube_id = youtube_id | split: 'v=' | last | split: '&' | first %}
+    {% elsif youtube_id contains '?' %}{% assign youtube_id = youtube_id | split: '?' | first %}{% endif %}
     {% else %}
     {% assign src = include.objectid | relative_url %}
     {% endif %}
