@@ -28,4 +28,4 @@ The resulting static site can be hosted on any basic web server.
 See [CB Docs](https://collectionbuilder.github.io/cb-docs/) for detailed information.
 
 <!-- IMPORTANT!!! DELETE everything below this comment (and this comment) when you are finished editing this page for your collection. The included file below includes instructions for inserting features into your about page. They will show up on your collection's about page until you delete it.  -->
-{% include cb/feature_options.md %}
+{% include cb/about_the_about.md %}
