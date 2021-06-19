@@ -23,7 +23,7 @@ gallery: true
                     <p>
                         {%- if page.format contains 'audio' -%}
                         <audio controls class="w-100">
-                            <source src="{% include download/item.html %}" type="audio/mpeg">
+                            <source src="{% include download/item.html %}">
                             Your browser does not support the audio element.
                         </audio>
                         {%- elsif page.youtubeid -%}

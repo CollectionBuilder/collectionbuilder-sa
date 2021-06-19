@@ -28,7 +28,7 @@
 {% else %}
 {%- assign item = site.data[site.metadata] | where: "objectid", include.objectid | first -%}
 {%- capture src -%}{% if  item.filename contains '/' %}{{ item.filename }}{% else %}{{ '/objects/' | append: item.filename | relative_url }}{% endif %}{% endcapture %}
-{%- capture pdf_link -%}{{ '/item.html' | relative_url | append: '?id=' | append: item.objectid }}{%- endcapture -%}
+{%- capture pdf_link -%}{{ '/items/' | append: item.objectid | append: '.html' | relative_url }}{%- endcapture -%}
 {%- capture pdf_caption -%}{% if include.caption %}{{ include.caption }}{% else %}{{ item.title }}{% endif %}{%- endcapture -%}
 {% endif %}
 <div class="text-center">
