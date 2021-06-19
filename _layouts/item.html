@@ -23,7 +23,7 @@ gallery: true
                     <p>
                         {%- if page.format contains 'audio' -%}
                         <audio controls class="w-100">
-                            <source src="{% include download/item.html %}" type="audio/mpeg">
+                            <source src="{% include download/item.html %}">
                             Your browser does not support the audio element.
                         </audio>
                         {%- elsif page.youtubeid -%}
@@ -63,6 +63,8 @@ gallery: true
                         {% for t in topics %}
                         <a class="mr-3" href="{{ t | strip | url_param_escape | prepend: '/browse.html#' | relative_url }}">{{ t | strip }}</a>
                         {% endfor %}
+                        {% elsif f.external_link == "true" %}
+                        <a class="mr-3" href="{{ page[f.field] | strip | url_param_escape }}">{{ page[f.field] | strip }}</a>
                         {% else %}
                         {{ page[f.field] | replace: '""','"' }}{% endif %}
                     </dd>
