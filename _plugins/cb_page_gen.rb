@@ -2,7 +2,7 @@
 
 #########
 #
-# CollectionBuilder Page Generator
+# CollectionBuilder Page Generator, v1.0-sa
 #
 # Jekyll plugin to generate pages from _data/ files.
 # Designed to create Item pages from metadata CSV for digital collection sites.
