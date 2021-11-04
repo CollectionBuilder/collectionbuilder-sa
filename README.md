@@ -1,7 +1,8 @@
 # CollectionBuilder-SA 
 
-> **Note:** This repository is not under active development. 
-> For the newest iteration, please check [CollectionBuilder-CSV](https://github.com/CollectionBuilder/collectionbuilder-csv)
+> **Note: the CollectionBuilder-SA template has been depreciated.**
+> The code in this repository *probably* works, but is not under active development. 
+> For new projects please use [CollectionBuilder-CSV](https://github.com/CollectionBuilder/collectionbuilder-csv)!
 
 CollectionBuilder-SA ("Stand Alone") is a template for creating digital collection and exhibit websites using Jekyll, given:
 
@@ -22,7 +23,6 @@ Full document text search is possible, but not generally suggested.
 See [CB Docs](https://collectionbuilder.github.io/cb-docs/) for detailed information.
 
 If you are interested in using CollectionBuilder, or are already using it, please drop us a line (**libstatic.uidaho@gmail.com**) since we would love to learn more about its use in the wild. 
-There are also currently opportunities to [collaborate on CollectionBuilder](https://collectionbuilder.github.io/about.html#the-grant).
 
 ----------
 
