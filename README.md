@@ -1,8 +1,13 @@
 # CollectionBuilder-SA 
 
-> **Note: the CollectionBuilder-SA template has been depreciated.**
-> The code in this repository *probably* works, but is not under active development. 
-> For new projects please use [CollectionBuilder-CSV](https://github.com/CollectionBuilder/collectionbuilder-csv)!
+**Note: the CollectionBuilder-SA template has been depreciated as of 2021-11-04.**
+For new projects please use [CollectionBuilder-CSV](https://github.com/CollectionBuilder/collectionbuilder-csv)!
+
+Existing projects using CB-SA will continue to work fine! 
+The code in this repository *probably* works, but is not actively developed or maintained. 
+Documentation specific to CollectionBuilder-SA has been removed from the main cb-docs site--look in the "docs" folder of this repository for the legacy documentation.
+
+-----------
 
 CollectionBuilder-SA ("Stand Alone") is a template for creating digital collection and exhibit websites using Jekyll, given:
 
