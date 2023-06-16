@@ -54,8 +54,8 @@ metadata: demo-metadata
 #
 # leave these blank or comment out to NOT include google code
 # if present, used to add analytics during "production" build only
-# google-analytics-id: "UA-74844011-1"
-# google-cse-id: "002151703305773322890:1pu3smhw1t8"
+# google-analytics-id: 
+# google-cse-id: 
 
 ##########
 # ROBOTS EXCLUDE
